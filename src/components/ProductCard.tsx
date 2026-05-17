@@ -71,15 +71,20 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Link>
 
         {/* Price */}
-        <div className="flex items-center gap-2 mb-4 mt-auto">
-          {hasDiscount && (
-            <span className="text-sm text-gray-400 line-through">
-              {formatPrice(compareAtPrice.amount, compareAtPrice.currencyCode)}
+        <div className="mb-4 mt-auto">
+          <div className="flex items-center gap-2">
+            {hasDiscount && (
+              <span className="text-sm text-gray-400 line-through">
+                {formatPrice(compareAtPrice.amount, compareAtPrice.currencyCode)}
+              </span>
+            )}
+            <span className={`text-lg font-bold ${hasDiscount ? 'text-red-600' : 'text-gray-900'}`}>
+              {formatPrice(price.amount, price.currencyCode)}
             </span>
-          )}
-          <span className={`text-lg font-bold ${hasDiscount ? 'text-red-600' : 'text-gray-900'}`}>
-            {formatPrice(price.amount, price.currencyCode)}
-          </span>
+          </div>
+          <p className="text-xs text-green-600 font-medium mt-0.5">
+            3 cuotas sin interés x {formatPrice((parseFloat(price.amount) / 3).toFixed(2), price.currencyCode)}
+          </p>
         </div>
 
         {/* Add to Cart Button */}
