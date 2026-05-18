@@ -2,7 +2,9 @@
 
 import { useCart } from '@/context/CartContext';
 import { formatPrice } from '@/lib/shopify';
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { useRouter } from 'next/navigation';
 
 export default function CartDrawer() {
   const {
@@ -17,6 +19,27 @@ export default function CartDrawer() {
     checkout,
   } = useCart();
 
+  const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => { setMounted(true); }, []);
+
+  // Handle open/close with delay for exit animation
+  useEffect(() => {
+    if (isOpen) {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+      setVisible(true);
+    } else {
+      // Wait for the slide-out animation before unmounting
+      closeTimerRef.current = setTimeout(() => setVisible(false), 350);
+    }
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, [isOpen]);
+
   // Lock body scroll when cart is open
   useEffect(() => {
     if (isOpen) {
@@ -29,24 +52,41 @@ export default function CartDrawer() {
     };
   }, [isOpen]);
 
-  return (
+  // Don't render anything until mounted on client, and don't render when fully closed
+  if (!mounted || !visible) return null;
+
+  return createPortal(
     <>
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/50 z-[60] transition-opacity duration-200 ${
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
         onClick={closeCart}
         id="cart-backdrop"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          zIndex: 9998,
+          opacity: isOpen ? 1 : 0,
+          transition: 'opacity 200ms',
+        }}
       />
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-full max-w-md bg-white z-[70] shadow-2xl transform transition-transform duration-300 ease-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        style={{ willChange: 'transform' }}
         id="cart-drawer"
+        style={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          height: '100vh',
+          width: '100%',
+          maxWidth: '28rem',
+          backgroundColor: '#fff',
+          zIndex: 9999,
+          boxShadow: '-4px 0 25px rgba(0,0,0,0.15)',
+          transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
+          transition: 'transform 300ms ease-out',
+        }}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
@@ -83,7 +123,7 @@ export default function CartDrawer() {
                   Agregá productos para empezar a comprar
                 </p>
                 <button
-                  onClick={closeCart}
+                  onClick={() => { closeCart(); router.push('/catalogo'); }}
                   className="bg-red-600 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-red-700 transition-colors"
                 >
                   Explorar productos
@@ -188,6 +228,7 @@ export default function CartDrawer() {
           )}
         </div>
       </div>
-    </>
+    </>,
+    document.body
   );
 }
