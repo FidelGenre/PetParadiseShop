@@ -80,7 +80,7 @@ export default function HeroBanner() {
         <Link href="/producto/kit-premium-de-paseo-para-perros" className="block w-full h-full cursor-pointer">
           {/* Mobile */}
           <Image
-            src="/bannerbotellaresponsive.png"
+            src="/responsivebanner.png"
             alt="Kit Premium de Paseo para Perros"
             fill
             priority

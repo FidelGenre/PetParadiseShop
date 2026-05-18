@@ -1,5 +1,6 @@
 import HeroBanner from '@/components/HeroBanner';
 import ProductGrid from '@/components/ProductGrid';
+import ReviewsSection from '@/components/ReviewsSection';
 import { getProducts } from '@/lib/shopify';
 
 export default async function HomePage() {
@@ -31,6 +32,8 @@ export default async function HomePage() {
           </a>
         </div>
       </section>
+
+      <ReviewsSection />
 
       {/* Benefits Section */}
       <section className="bg-gray-50 py-12 md:py-16" id="benefits">
