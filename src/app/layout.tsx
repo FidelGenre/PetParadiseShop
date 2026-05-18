@@ -29,10 +29,7 @@ export const metadata: Metadata = {
     "mascotas", "pet shop", "productos para perros", "productos para gatos",
     "accesorios mascotas", "tienda mascotas", "Pet Paradise",
   ],
-  icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
-  },
+
   openGraph: {
     title: "Pet Paradise",
     description: "Todo lo que tu mascota necesita",
