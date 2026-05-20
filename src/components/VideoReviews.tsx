@@ -19,11 +19,15 @@ export default function VideoReviews({ videos }: VideoReviewsProps) {
   const videoRefs = useRef<Record<string, HTMLVideoElement>>({});
 
   useEffect(() => {
+    const cleanupFns: (() => void)[] = [];
+
     videos.forEach((video) => {
       if (!video.thumbnail) {
         const videoEl = document.createElement('video');
         videoEl.src = video.videoUrl;
         videoEl.crossOrigin = 'anonymous';
+        videoEl.muted = true;
+        videoEl.preload = 'metadata';
 
         const handleLoadedMetadata = () => {
           videoEl.currentTime = 0;
@@ -43,22 +47,45 @@ export default function VideoReviews({ videos }: VideoReviewsProps) {
           }
         };
 
+        const handleCanPlay = () => {
+          if (videoEl.currentTime === 0) {
+            const canvas = document.createElement('canvas');
+            canvas.width = videoEl.videoWidth;
+            canvas.height = videoEl.videoHeight;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              ctx.drawImage(videoEl, 0, 0);
+              setThumbnails((prev) => ({
+                ...prev,
+                [video.id]: canvas.toDataURL('image/jpeg', 0.8),
+              }));
+            }
+          }
+        };
+
         videoEl.addEventListener('loadedmetadata', handleLoadedMetadata);
         videoEl.addEventListener('seeked', handleSeeked);
+        videoEl.addEventListener('canplay', handleCanPlay);
 
-        return () => {
+        const cleanup = () => {
           videoEl.removeEventListener('loadedmetadata', handleLoadedMetadata);
           videoEl.removeEventListener('seeked', handleSeeked);
+          videoEl.removeEventListener('canplay', handleCanPlay);
         };
+        cleanupFns.push(cleanup);
       }
     });
+
+    return () => {
+      cleanupFns.forEach((fn) => fn());
+    };
   }, [videos]);
 
   if (!videos || videos.length === 0) return null;
 
   return (
     <div className="mt-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {videos.map((video) => (
           <div key={video.id} className="relative">
             <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 bg-red-600 text-white text-xs font-black px-3 py-1 rounded-full shadow-md whitespace-nowrap">

@@ -46,11 +46,11 @@ export default function StickyProductBar({ product }: StickyProductBarProps) {
 
   return (
     <div className={`fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 ${isAnimatingOut ? 'animate-slide-up' : 'animate-slide-down'}`} style={{ boxShadow: '0 -8px 24px rgba(0, 0, 0, 0.12)' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-6">
         {/* Product Info */}
-        <div className="flex items-center gap-5 flex-1 min-w-0">
+        <div className="flex items-center gap-3 sm:gap-5 flex-1 min-w-0">
           {currentImage && (
-            <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden bg-gray-100 shadow-md">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 shrink-0 rounded-lg overflow-hidden bg-gray-100 shadow-md">
               <Image
                 src={currentImage.url}
                 alt={product.title}
@@ -61,19 +61,19 @@ export default function StickyProductBar({ product }: StickyProductBarProps) {
             </div>
           )}
           <div className="min-w-0 flex-1">
-            <h3 className="font-bold text-gray-900 text-base truncate">{product.title}</h3>
-            <div className="flex items-center gap-3 mt-2">
+            <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate">{product.title}</h3>
+            <div className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2 flex-wrap">
               {hasDiscount && (
-                <span className="text-sm text-gray-500 line-through">
+                <span className="text-xs sm:text-sm text-gray-500 line-through">
                   {formatPrice(compareAt.amount, compareAt.currencyCode)}
                 </span>
               )}
-              <span className="font-black text-2xl text-red-600">
+              <span className="font-black text-xl sm:text-2xl text-red-600">
                 {formatPrice(price.amount, price.currencyCode)}
               </span>
               {hasDiscount && (
-                <span className="bg-red-600 text-white text-sm font-black px-3 py-1 rounded-full">
-                  Ahorra {discountPercent}%
+                <span className="bg-red-600 text-white text-xs sm:text-sm font-black px-2.5 py-1 rounded-full">
+                  {discountPercent}%
                 </span>
               )}
             </div>
@@ -83,7 +83,7 @@ export default function StickyProductBar({ product }: StickyProductBarProps) {
         {/* Add to Cart Button */}
         <button
           onClick={() => addItem(product, quantity)}
-          className="shrink-0 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-base whitespace-nowrap shadow-lg"
+          className="shrink-0 w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 sm:py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base whitespace-nowrap shadow-lg"
         >
           Añadir
         </button>

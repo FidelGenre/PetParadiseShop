@@ -14,7 +14,7 @@ export default async function HomePage() {
     <>
       <HomeHero />
 
-      <PainPointSection />
+      <PainPointSection ctaHref="/producto/kit-premium-de-paseo-para-perros" />
 
       <ReviewsSection />
 
