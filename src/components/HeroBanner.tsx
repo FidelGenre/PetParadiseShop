@@ -4,11 +4,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-export default function HeroBanner() {
+interface HeroBannerProps {
+  onSlideChange?: (index: number) => void;
+}
+
+export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const total = 2;
+
+  useEffect(() => {
+    onSlideChange?.(current);
+  }, [current, onSlideChange]);
 
   const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % total);
@@ -20,7 +28,7 @@ export default function HeroBanner() {
 
   const resetInterval = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(next, 4000);
+    intervalRef.current = setInterval(next, 8000);
   }, [next]);
 
   useEffect(() => {
@@ -49,59 +57,68 @@ export default function HeroBanner() {
 
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden w-full aspect-[1274/1235] sm:aspect-[1740/904] sm:max-h-[70vh] xl:max-h-[700px]"
       id="hero-banner"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* ── Slide 2 define la altura del contenedor (con su padding natural) ── */}
-      {/* Esta es la capa que da el tamaño al section */}
-      <div className="invisible" aria-hidden="true">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 lg:py-24">
-          <div className="text-white space-y-6">
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none">Pet Paradise</h1>
-              <p className="text-2xl md:text-3xl font-bold mt-1 uppercase">Shop</p>
-            </div>
-            <div className="space-y-2">
-              <h2 className="text-lg md:text-xl font-bold italic">TODO LO QUE TU MASCOTA NECESITA</h2>
-              <p className="text-sm md:text-base italic max-w-md leading-relaxed">Encontrá productos de calidad y ofertas increíbles para hacer la vida de tu mejor amigo mas feliz!</p>
-            </div>
-            <div><div className="inline-flex items-center gap-2 px-8 py-3 rounded-full text-sm">Ver Tienda →</div></div>
-            <div className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm">342-477-0030</div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Slide 1: bannerbotella.png ── */}
+      {/* ── Slide 1: banner.PNG ── */}
       <div
-        className={`absolute inset-0 transition-opacity duration-500 ${current === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+        className={`absolute inset-0 transition-opacity duration-500 ${current === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}
       >
-        <Link href="/producto/kit-premium-de-paseo-para-perros" className="block w-full h-full cursor-pointer">
+        <div className="block w-full h-full">
           {/* Mobile */}
           <Image
-            src="/responsivebanner.png"
+            src="/banner1responsive.png"
             alt="Kit Premium de Paseo para Perros"
             fill
             priority
-            className="object-cover object-center sm:hidden"
+            className="object-cover object-top sm:hidden"
             sizes="100vw"
           />
           {/* Desktop */}
           <Image
-            src="/bannerbotella.png"
+            src="/bannernasi.png"
             alt="Kit Premium de Paseo para Perros"
             fill
             priority
-            className="object-cover object-center hidden sm:block"
+            className="object-cover object-bottom hidden sm:block"
             sizes="100vw"
           />
+        </div>
+        {/* CTA Button — mobile only, posicionado sobre el botón pintado en la imagen */}
+        <Link
+          href="/producto/kit-premium-de-paseo-para-perros"
+          className="absolute bottom-[11%] left-[5%] z-30 sm:hidden inline-flex items-center gap-3 bg-red-600 text-white pl-7 pr-6 py-4 rounded-full font-black text-base uppercase tracking-wide shadow-lg active:scale-95 transition-transform"
+          id="hero-cta-slide1-mobile"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+          </svg>
+          Comprar Ahora
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </Link>
+        {/* CTA Button — desktop only, izquierda del texto "compra segura" */}
+        <Link
+          href="/producto/kit-premium-de-paseo-para-perros"
+          className="absolute bottom-[6%] left-[9%] z-20 hidden sm:inline-flex items-center gap-3 bg-red-600 text-white pl-7 pr-6 py-4 rounded-full font-black text-base md:text-lg uppercase tracking-wide hover:bg-red-700 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-xl"
+          id="hero-cta-slide1"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+          </svg>
+          Comprar Ahora
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
         </Link>
       </div>
 
       {/* ── Slide 2: fondopagina1.png con textos ── */}
       <div
-        className={`absolute inset-0 transition-opacity duration-500 ${current === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+        className={`absolute inset-0 transition-opacity duration-500 ${current === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}
       >
         <Image
           src="/fondopagina1.png"
@@ -150,24 +167,17 @@ export default function HeroBanner() {
       </div>
 
       {/* Dots navigation */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         {Array.from({ length: total }).map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              i === current ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/80'
+              i === current ? 'bg-white scale-125 shadow-md' : 'bg-white/50 hover:bg-white/80'
             }`}
             aria-label={`Ir al slide ${i + 1}`}
           />
         ))}
-      </div>
-
-      {/* Bottom wave decoration */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 translate-y-[1px]">
-        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block">
-          <path d="M0 30L48 25C96 20 192 10 288 8.3C384 6.7 480 13.3 576 20C672 26.7 768 33.3 864 35C960 36.7 1056 33.3 1152 28.3C1248 23.3 1344 16.7 1392 13.3L1440 10V60H1392C1344 60 1248 60 1152 60C1056 60 960 60 864 60C768 60 672 60 576 60C480 60 384 60 288 60C192 60 96 60 48 60H0V30Z" fill="white"/>
-        </svg>
       </div>
     </section>
   );

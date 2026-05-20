@@ -1,14 +1,17 @@
-import HeroBanner from '@/components/HeroBanner';
+import HomeHero from '@/components/HomeHero';
 import ProductGrid from '@/components/ProductGrid';
 import ReviewsSection from '@/components/ReviewsSection';
-import { getProducts } from '@/lib/shopify';
+import { getProductByHandle } from '@/lib/shopify';
+
+const FEATURED_HANDLE = 'kit-premium-de-paseo-para-perros';
 
 export default async function HomePage() {
-  const products = await getProducts(8);
+  const featured = await getProductByHandle(FEATURED_HANDLE);
+  const products = featured ? [featured] : [];
 
   return (
     <>
-      <HeroBanner />
+      <HomeHero />
 
       {/* Featured Products Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20" id="featured-products">
@@ -16,6 +19,7 @@ export default async function HomePage() {
           products={products}
           title="Nuestros productos destacados"
           subtitle="Descubrí nuestra selección de productos premium para tu mascota"
+          featured
         />
 
         {/* CTA to catalog */}

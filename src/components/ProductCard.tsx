@@ -27,13 +27,21 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const imageUrl = product.featuredImage?.url || '/placeholder-product.jpg';
 
+  const isFeatured = product.handle === 'kit-premium-de-paseo-para-perros';
+
   return (
+    <div className="relative">
+      {isFeatured && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 bg-gradient-to-r from-yellow-400 to-amber-500 text-white text-[11px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+          ⭐ Producto Estrella
+        </div>
+      )}
     <div
       className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 flex flex-col"
       id={`product-card-${product.handle}`}
     >
       {/* Image */}
-      <Link href={`/producto/${product.handle}`} className="relative aspect-square overflow-hidden bg-gray-50">
+      <Link href={`/producto/${product.handle}`} className="relative aspect-[4/5] overflow-hidden bg-gray-50 block w-full">
         {hasDiscount && (
           <div className="absolute top-3 left-3 z-10 bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-lg animate-pulse-subtle">
             -{discountPercentage}%
@@ -106,6 +114,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           Añadir al carrito
         </button>
       </div>
+    </div>
     </div>
   );
 }
