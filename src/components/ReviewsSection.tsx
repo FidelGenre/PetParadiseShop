@@ -49,11 +49,49 @@ const reviews = [
 
 const PAGES = [reviews.slice(0, 3), reviews.slice(3, 6)];
 
+type Review = (typeof reviews)[number];
+
+function ReviewCard({ review, className = '' }: { review: Review; className?: string }) {
+  return (
+    <div className={`bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 flex flex-col items-center text-center ${className}`}>
+      {/* Stars */}
+      <div className="flex gap-0.5 mb-4">
+        {Array.from({ length: review.stars }).map((_, s) => (
+          <svg key={s} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-amber-400">
+            <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+          </svg>
+        ))}
+      </div>
+
+      {/* Avatar */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={review.avatar}
+        alt={review.name}
+        className="w-16 h-16 rounded-full object-cover border-2 border-red-100 mb-4"
+      />
+
+      <p className="font-bold text-gray-900 text-sm">
+        {review.name} — <span className="font-normal text-gray-500">{review.location}</span>
+      </p>
+
+      <p className="text-gray-600 text-sm leading-relaxed mt-3 italic">{review.text}</p>
+
+      <p className="text-red-600 text-xs font-semibold mt-4 flex items-center gap-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
+          <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clipRule="evenodd" />
+        </svg>
+        COMPRA VERIFICADA
+      </p>
+    </div>
+  );
+}
+
 export default function ReviewsSection() {
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const total = PAGES.length; // 2
+  const total = PAGES.length;
 
   const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % total);
@@ -81,7 +119,7 @@ export default function ReviewsSection() {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) {
-      diff > 0 ? next() : prev();
+      if (diff > 0) next(); else prev();
       resetInterval();
     }
     touchStartX.current = null;
@@ -100,90 +138,66 @@ export default function ReviewsSection() {
           <p className="text-gray-500 text-sm">Opiniones verificadas sobre la Botella Portátil para Perros</p>
         </div>
 
-        {/* Slider */}
-        <div
-          className="relative"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          {/* Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {pageReviews.map((review, i) => (
-              <div
-                key={`page${current}-${i}`}
-                className="bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 flex flex-col items-center text-center animate-fade-in"
-              >
-                {/* Stars */}
-                <div className="flex gap-0.5 mb-4">
-                  {Array.from({ length: review.stars }).map((_, s) => (
-                    <svg key={s} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-amber-400">
-                      <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
-                    </svg>
-                  ))}
-                </div>
-
-                {/* Avatar */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={review.avatar}
-                  alt={review.name}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-red-100 mb-4"
-                />
-
-                {/* Name & Location */}
-                <p className="font-bold text-gray-900 text-sm">
-                  {review.name} — <span className="font-normal text-gray-500">{review.location}</span>
-                </p>
-
-                {/* Review text */}
-                <p className="text-gray-600 text-sm leading-relaxed mt-3 italic">
-                  {review.text}
-                </p>
-
-                {/* Verified badge */}
-                <p className="text-red-600 text-xs font-semibold mt-4 flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
-                    <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clipRule="evenodd" />
-                  </svg>
-                  COMPRA VERIFICADA
-                </p>
+        {/* MOBILE: scroll horizontal con snap */}
+        <div className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex gap-4">
+            {reviews.map((review, i) => (
+              <div key={i} className="snap-center shrink-0 w-[85vw] max-w-sm">
+                <ReviewCard review={review} className="h-full" />
               </div>
             ))}
           </div>
-
-          {/* Arrows */}
-          <button
-            onClick={() => { prev(); resetInterval(); }}
-            className="absolute -left-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-red-50 hover:border-red-300 transition-all hidden md:flex"
-            aria-label="Anterior reseña"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 text-gray-600">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-          <button
-            onClick={() => { next(); resetInterval(); }}
-            className="absolute -right-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-red-50 hover:border-red-300 transition-all hidden md:flex"
-            aria-label="Siguiente reseña"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 text-gray-600">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-            </svg>
-          </button>
         </div>
 
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {PAGES.map((_, i) => (
+        {/* DESKTOP: grid paginado */}
+        <div className="hidden md:block">
+          <div
+            className="relative"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div className="grid grid-cols-3 gap-6">
+              {pageReviews.map((review, i) => (
+                <ReviewCard
+                  key={`page${current}-${i}`}
+                  review={review}
+                  className="animate-fade-in"
+                />
+              ))}
+            </div>
+
             <button
-              key={i}
-              onClick={() => { setCurrent(i); resetInterval(); }}
-              className={`rounded-full transition-all duration-300 ${
-                i === current ? 'bg-red-600 w-5 h-2.5' : 'bg-gray-300 w-2.5 h-2.5 hover:bg-gray-400'
-              }`}
-              aria-label={`Reseña ${i + 1}`}
-            />
-          ))}
+              onClick={() => { prev(); resetInterval(); }}
+              className="absolute -left-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-red-50 hover:border-red-300 transition-all"
+              aria-label="Anterior reseña"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 text-gray-600">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            <button
+              onClick={() => { next(); resetInterval(); }}
+              className="absolute -right-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-red-50 hover:border-red-300 transition-all"
+              aria-label="Siguiente reseña"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 text-gray-600">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
+
+          <div className="flex justify-center gap-2 mt-8">
+            {PAGES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setCurrent(i); resetInterval(); }}
+                className={`rounded-full transition-all duration-300 ${
+                  i === current ? 'bg-red-600 w-5 h-2.5' : 'bg-gray-300 w-2.5 h-2.5 hover:bg-gray-400'
+                }`}
+                aria-label={`Reseña ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

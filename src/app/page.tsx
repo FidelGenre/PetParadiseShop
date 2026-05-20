@@ -1,4 +1,5 @@
 import HomeHero from '@/components/HomeHero';
+import PainPointSection from '@/components/PainPointSection';
 import ProductGrid from '@/components/ProductGrid';
 import ReviewsSection from '@/components/ReviewsSection';
 import { getProductByHandle } from '@/lib/shopify';
@@ -12,6 +13,10 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero />
+
+      <PainPointSection />
+
+      <ReviewsSection />
 
       {/* Featured Products Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20" id="featured-products">
@@ -36,8 +41,6 @@ export default async function HomePage() {
           </a>
         </div>
       </section>
-
-      <ReviewsSection />
 
       {/* Benefits Section */}
       <section className="bg-gray-50 py-12 md:py-16" id="benefits">
