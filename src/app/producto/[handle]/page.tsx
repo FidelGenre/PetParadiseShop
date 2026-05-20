@@ -8,6 +8,45 @@ import { getProductByHandle, formatPrice } from '@/lib/shopify';
 import { useCart } from '@/context/CartContext';
 import type { Product } from '@/types/shopify';
 import CountdownTimer from '@/components/CountdownTimer';
+import ProductReviews, { type Review } from '@/components/ProductReviews';
+import StickyProductBar from '@/components/StickyProductBar';
+import VideoReviews from '@/components/VideoReviews';
+import PainPointSection from '@/components/PainPointSection';
+
+const productReviews: Review[] = [
+  {
+    name: 'Florencia A.',
+    location: 'Tucumán',
+    images: ['/perroml1.png', '/perroml12.png'],
+    stars: 5,
+    headline: '¡Una genialidad!',
+    text: 'No esperaba que funcionara tan bien la verdad. Mi caniche toma agua sin problema y la botella no derrama ni una gota. Me llegó re rápido y bien empaquetada. Súper recomendada para los que paseamos mucho ☀️',
+  },
+  {
+    name: 'Tomás R.',
+    location: 'Neuquén',
+    images: ['/perroml2.png', '/perroml22.png'],
+    stars: 5,
+    headline: 'Excelente para viajar',
+    text: 'La uso para los viajes a la cordillera con mi pastor alemán. Antes era un drama pararme cada hora a buscarle agua, ahora le doy en cualquier momento. Vale cada peso 🚗',
+  },
+  {
+    name: 'Camila B.',
+    location: 'Bahía Blanca',
+    images: ['/perroml3.png'],
+    stars: 5,
+    headline: 'Mi salvación',
+    text: 'Tengo dos cachorros y caminar con dos botellas era imposible. Esta es liviana, fácil de usar y los perros se acostumbraron rápido. Ya pedí otra para regalar a mi hermana 🐶🐶',
+  },
+  {
+    name: 'Federico O.',
+    location: 'Mar del Plata',
+    images: ['/perroml4.png'],
+    stars: 5,
+    headline: 'Práctico y resistente',
+    text: 'La uso en la playa todos los días y aguanta arena, sol, lo que sea. El cierre no falla nunca. Buena inversión, mi bulldog está siempre hidratado. Cumple lo que promete.',
+  },
+];
 
 export default function ProductoPage() {
   const params = useParams();
@@ -64,6 +103,8 @@ export default function ProductoPage() {
   const isDemo = currentImage?.url.startsWith('/products/');
 
   return (
+    <>
+    <StickyProductBar product={product} />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       {/* Breadcrumb */}
       <nav className="mb-8 text-sm text-gray-400">
@@ -116,6 +157,26 @@ export default function ProductoPage() {
               ))}
             </div>
           )}
+
+          {handle === 'kit-premium-de-paseo-para-perros' && (
+            <VideoReviews videos={[
+              {
+                id: 'video1',
+                title: '',
+                videoUrl: '/review1.mp4'
+              },
+              {
+                id: 'video2',
+                title: '',
+                videoUrl: '/videoreview1.mp4'
+              },
+              {
+                id: 'video3',
+                title: '',
+                videoUrl: '/cacaperro.mp4'
+              }
+            ]} />
+          )}
         </div>
 
         {/* Product Info */}
@@ -166,31 +227,80 @@ export default function ProductoPage() {
             </p>
           </div>
 
-          <CountdownTimer />
-
           {handle === 'kit-premium-de-paseo-para-perros' ? (
             <div className="space-y-3">
-              {/* Intro */}
-              <p className="text-gray-700 text-sm leading-relaxed">
-                El combo ideal para pasear a tu mascota con <strong className="text-gray-900">comodidad, higiene y todo lo necesario</strong> en un solo kit.
-              </p>
+              {/* Gift highlight */}
+              <div className="relative bg-gradient-to-r from-red-600 to-red-500 text-white rounded-2xl p-4 shadow-lg overflow-hidden">
+                <div className="absolute -right-4 -top-4 text-7xl opacity-10 rotate-12 select-none">🎁</div>
+                <div className="relative flex items-start gap-3">
+                  <span className="text-3xl shrink-0">🎁</span>
+                  <div>
+                    <p className="font-black uppercase text-xs tracking-widest text-white/80">Hoy te llevás de regalo</p>
+                    <p className="font-bold text-sm mt-0.5">Chaleco de paseo + Envío gratis</p>
+                  </div>
+                </div>
+              </div>
 
-              {/* Items breakdown */}
-              <div className="space-y-2.5">
-                <div className="flex gap-3 p-3.5 bg-white border border-gray-100 rounded-xl hover:border-red-200 hover:shadow-sm transition-all">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-blue-50 flex items-center justify-center text-2xl">💧</div>
-                  <div className="min-w-0">
-                    <h4 className="font-black text-gray-900 text-sm mb-0.5">Botella Portátil Premium</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed">Mantené a tu perro hidratado en cualquier momento con su diseño práctico, portátil y antigoteo.</p>
+              <CountdownTimer />
+
+              {/* Quantity */}
+              <div className="flex items-center gap-4">
+                <span className="text-sm font-medium text-gray-700">Cantidad:</span>
+                <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden">
+                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors">−</button>
+                  <span className="w-12 h-10 flex items-center justify-center font-bold text-sm border-x border-gray-200">{quantity}</span>
+                  <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors">+</button>
+                </div>
+              </div>
+
+              {/* Add to Cart */}
+              <button onClick={() => addItem(product, quantity)}
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-black py-6 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl flex items-center justify-center gap-4 text-lg md:text-xl mt-8 mb-4"
+                id="add-to-cart-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                </svg>
+                Agregar al carrito
+              </button>
+
+              {/* What's Included Section */}
+              <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 border border-gray-100">
+                <h3 className="text-2xl font-black text-gray-900 mb-8 text-center">Qué incluye tu compra</h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Botella Portátil */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-24 h-24 bg-blue-100 rounded-2xl flex items-center justify-center text-5xl mb-4 shadow-md">
+                      💧
+                    </div>
+                    <h4 className="font-black text-gray-900 text-sm mb-2">Botella Portátil Premium</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">Diseño antigoteo, ligera y práctica. Mantené a tu perro hidratado en cualquier momento.</p>
+                  </div>
+
+                  {/* Juntador */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-24 h-24 bg-amber-100 rounded-2xl flex items-center justify-center text-5xl mb-4 shadow-md">
+                      🧹
+                    </div>
+                    <h4 className="font-black text-gray-900 text-sm mb-2">Juntador de Excremento</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">Práctico y funcional. Olvidate de los paseos incómodos, llevá las bolsas de forma fácil.</p>
+                  </div>
+
+                  {/* Chaleco */}
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-24 h-24 bg-red-100 rounded-2xl flex items-center justify-center text-5xl mb-4 shadow-md">
+                      🦺
+                    </div>
+                    <h4 className="font-black text-gray-900 text-sm mb-2">Chaleco de Paseo</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">Regalo incluido. Refuerza la seguridad y visibilidad de tu perro en cada paseo.</p>
                   </div>
                 </div>
 
-                <div className="flex gap-3 p-3.5 bg-white border border-gray-100 rounded-xl hover:border-red-200 hover:shadow-sm transition-all">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-amber-50 flex items-center justify-center text-2xl">🧹</div>
-                  <div className="min-w-0">
-                    <h4 className="font-black text-gray-900 text-sm mb-0.5">Juntador de Excremento</h4>
-                    <p className="text-xs text-gray-600 leading-relaxed">Olvidate de los paseos incómodos. Llevá las bolsas de forma práctica y mantené todo limpio.</p>
-                  </div>
+                {/* Highlight */}
+                <div className="mt-8 pt-6 border-t border-gray-200">
+                  <p className="text-center text-sm font-bold text-gray-900">
+                    ✨ <span className="text-red-600">3 productos en 1 kit</span> - Todo lo que necesitas para paseos perfectos
+                  </p>
                 </div>
               </div>
 
@@ -209,53 +319,34 @@ export default function ProductoPage() {
                   </div>
                 ))}
               </div>
-
-              {/* Gift highlight */}
-              <div className="relative bg-gradient-to-r from-red-600 to-red-500 text-white rounded-2xl p-4 shadow-lg overflow-hidden">
-                <div className="absolute -right-4 -top-4 text-7xl opacity-10 rotate-12 select-none">🎁</div>
-                <div className="relative flex items-start gap-3">
-                  <span className="text-3xl shrink-0">🎁</span>
-                  <div>
-                    <p className="font-black uppercase text-xs tracking-widest text-white/80">Hoy te llevás de regalo</p>
-                    <p className="font-bold text-sm mt-0.5">Chaleco para el frío + Envío gratis</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Urgency banner */}
-              <div className="flex items-center gap-2.5 bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5">
-                <svg className="w-5 h-5 text-amber-600 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-                </svg>
-                <p className="text-xs font-bold text-amber-900 uppercase tracking-wide">Promoción por tiempo limitado · últimas unidades</p>
-              </div>
             </div>
           ) : (
             <div className="prose prose-sm text-gray-600 max-w-none" dangerouslySetInnerHTML={{ __html: product.descriptionHtml || `<p>${product.description}</p>` }} />
           )}
-
-          {/* Quantity */}
-          <div className="flex items-center gap-4">
-            <span className="text-sm font-medium text-gray-700">Cantidad:</span>
-            <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden">
-              <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors">−</button>
-              <span className="w-12 h-10 flex items-center justify-center font-bold text-sm border-x border-gray-200">{quantity}</span>
-              <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors">+</button>
-            </div>
-          </div>
-
-          {/* Add to Cart */}
-          <button onClick={() => addItem(product, quantity)}
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.01] active:scale-95 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 text-base"
-            id="add-to-cart-detail">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-            </svg>
-            Agregar al carrito
-          </button>
         </div>
       </div>
 
     </div>
+
+    {handle === 'kit-premium-de-paseo-para-perros' && (
+      <>
+        <PainPointSection
+          title="¿Tu perro merece agua limpia en cada paseo?"
+          subtitle="Descubrí por qué miles de dueños ya no salen sin la botella portátil."
+          cardTitle="Los paseos sin agua pueden ser peligrosos."
+          bullets={[
+            'Tu perro bebe de charcos sucios y después tiene problemas digestivos o infecciones.',
+            'Se deshidrata rápido en días calurosos y termina exhausto antes de tiempo.',
+            'Las botellas comunes gotean, mojan tu mochila y ensucias todo lo que cargás.',
+            'Querés disfrutar del paseo, no estar pendiente de si tiene sed o está enfermo.',
+          ]}
+          beforeSrc="/perroagua.jpg"
+          afterSrc="/perrocansado.jpg"
+        />
+
+        <ProductReviews reviews={productReviews} />
+      </>
+    )}
+    </>
   );
 }
