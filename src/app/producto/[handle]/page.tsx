@@ -12,6 +12,7 @@ import ProductReviews, { type Review } from '@/components/ProductReviews';
 import StickyProductBar from '@/components/StickyProductBar';
 import VideoReviews from '@/components/VideoReviews';
 import PainPointSection from '@/components/PainPointSection';
+import ProductDescription from '@/components/ProductDescription';
 
 const productReviews: Review[] = [
   {
@@ -47,6 +48,60 @@ const productReviews: Review[] = [
     text: 'La uso en la playa todos los días y aguanta arena, sol, lo que sea. El cierre no falla nunca. Buena inversión, mi bulldog está siempre hidratado. Cumple lo que promete.',
   },
 ];
+
+const PRODUCT_CONFIGS: Record<string, any> = {
+  'kit-premium-de-paseo-para-perros': {
+    descriptionItems: [
+      {
+        icon: '💧',
+        title: 'Botella Portátil Premium',
+        description: 'Diseño antigoteo, ligera y práctica. Mantené a tu perro hidratado en cualquier momento.',
+        bgColor: 'bg-blue-100',
+      },
+      {
+        icon: '🧹',
+        title: 'Juntador de Excremento',
+        description: 'Práctico y funcional. Olvidate de los paseos incómodos, llevá las bolsas de forma fácil.',
+        bgColor: 'bg-amber-100',
+      },
+      {
+        icon: '🦺',
+        title: 'Chaleco de Paseo',
+        description: 'Regalo incluido. Refuerza la seguridad y visibilidad de tu perro en cada paseo.',
+        bgColor: 'bg-red-100',
+      },
+    ],
+    features: [
+      { icon: '🎒', label: 'Portátil', text: 'Ligero y compacto' },
+      { icon: '💧', label: 'Antigoteo', text: 'Sin derrames' },
+      { icon: '⚡', label: 'Práctica', text: 'Fácil de usar' },
+      { icon: '✈️', label: 'Viajes', text: 'Ideal en cualquier lugar' },
+      { icon: '🛡️', label: 'Resistente', text: 'Material premium' },
+    ],
+  },
+  'kit-argentina-mundial-2026': {
+    descriptionItems: [
+      {
+        icon: '🇦🇷',
+        title: 'Polar Argentina',
+        description: 'Polar cómodo y abrigado con los colores de Argentina, ideal para apoyar en el Mundial 2026.',
+        bgColor: 'bg-blue-100',
+      },
+      {
+        icon: '🧣',
+        title: 'Bandana Argentina',
+        description: 'Bandana con diseños característicos de Argentina, perfecta para llevar tu pasión.',
+        bgColor: 'bg-yellow-100',
+      },
+    ],
+    features: [
+      { icon: '⚽', label: 'Calidad', text: 'Material premium' },
+      { icon: '🏆', label: 'Edición', text: 'Limited 2026' },
+      { icon: '🌟', label: 'Exclusivo', text: 'Colección especial' },
+      { icon: '💪', label: 'Orgullo', text: 'Representa tu país' },
+    ],
+  },
+};
 
 export default function ProductoPage() {
   const params = useParams();
@@ -105,7 +160,7 @@ export default function ProductoPage() {
   return (
     <>
     <StickyProductBar product={product} />
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 ${handle === 'kit-argentina-mundial-2026' ? 'argentina-theme' : ''}`}>
       {/* Breadcrumb */}
       <nav className="mb-8 text-sm text-gray-400">
         <Link href="/" className="hover:text-red-600 transition-colors">Inicio</Link>
@@ -128,12 +183,16 @@ export default function ProductoPage() {
             }}
           >
             {hasDiscount && (
-              <div className="absolute top-4 left-4 z-10 bg-red-600 text-white text-sm font-bold px-3 py-1.5 rounded-full">
+              <div className={`absolute top-4 left-4 z-10 text-white text-sm font-bold px-3 py-1.5 rounded-full ${
+                handle === 'kit-argentina-mundial-2026' ? 'bg-sky-400' : 'bg-red-600'
+              }`}>
                 OFERTA
               </div>
             )}
             {/* Free shipping badge */}
-            <div className="absolute top-4 right-4 z-10 bg-red-600 text-white text-sm font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+            <div className={`absolute top-4 right-4 z-10 text-white text-sm font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 ${
+              handle === 'kit-argentina-mundial-2026' ? 'bg-sky-400' : 'bg-red-600'
+            }`}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
               </svg>
@@ -217,7 +276,11 @@ export default function ProductoPage() {
                 {formatPrice(price.amount, price.currencyCode)}
               </span>
               {hasDiscount && (
-                <span className="bg-red-600 text-white text-sm font-black px-3 py-1 rounded-full">
+                <span className={`text-white text-sm font-black px-3 py-1 rounded-full ${
+                  handle === 'kit-argentina-mundial-2026'
+                    ? 'bg-sky-400'
+                    : 'bg-red-600'
+                }`}>
                   -{Math.round((1 - parseFloat(price.amount) / parseFloat(compareAt.amount)) * 100)}% OFF
                 </span>
               )}
@@ -227,35 +290,126 @@ export default function ProductoPage() {
             </p>
           </div>
 
-          {handle === 'kit-premium-de-paseo-para-perros' ? (
+          {PRODUCT_CONFIGS[handle] ? (
             <div className="space-y-3">
-              {/* Gift highlight */}
-              <div className="relative bg-gradient-to-r from-red-600 to-red-500 text-white rounded-2xl p-4 shadow-lg overflow-hidden">
-                <div className="absolute -right-4 -top-4 text-7xl opacity-10 rotate-12 select-none">🎁</div>
-                <div className="relative flex items-start gap-3">
-                  <span className="text-3xl shrink-0">🎁</span>
-                  <div>
-                    <p className="font-black uppercase text-xs tracking-widest text-white/80">Hoy te llevás de regalo</p>
-                    <p className="font-bold text-sm mt-0.5">Chaleco de paseo + Envío gratis</p>
+              {handle === 'kit-premium-de-paseo-para-perros' && (
+                <>
+                  {/* Gift highlight */}
+                  <div className="relative bg-gradient-to-r from-red-600 to-red-500 text-white rounded-2xl p-4 shadow-lg overflow-hidden">
+                    <div className="absolute -right-4 -top-4 text-7xl opacity-10 rotate-12 select-none">🎁</div>
+                    <div className="relative flex items-start gap-3">
+                      <span className="text-3xl shrink-0">🎁</span>
+                      <div>
+                        <p className="font-black uppercase text-xs tracking-widest text-white/80">Hoy te llevás de regalo</p>
+                        <p className="font-bold text-sm mt-0.5">Chaleco de paseo + Envío gratis</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <CountdownTimer />
+                  <CountdownTimer />
+                </>
+              )}
+              {handle === 'kit-argentina-mundial-2026' && (
+                <>
+                  {/* Gift highlight */}
+                  <div className="relative bg-gradient-to-r from-sky-400 to-sky-300 text-white rounded-2xl p-4 shadow-lg overflow-hidden">
+                    <div className="absolute -right-4 -top-4 text-7xl opacity-10 rotate-12 select-none">🎁</div>
+                    <div className="relative flex items-start gap-3">
+                      <span className="text-3xl shrink-0">🎁</span>
+                      <div>
+                        <p className="font-black uppercase text-xs tracking-widest text-white/80">Hoy te llevás de regalo</p>
+                        <p className="font-bold text-sm mt-0.5">Bandana Argentina + Envío gratis</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Countdown Timer Argentina Style */}
+                  <div className="argentina-countdown-timer rounded-2xl px-6 py-5 mt-2" id="countdown-timer">
+                    <p className="text-white text-xs font-bold text-center uppercase tracking-widest mb-4 flex items-center justify-center gap-2 drop-shadow-lg">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 animate-bounce">
+                        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clipRule="evenodd" />
+                      </svg>
+                      ¡Esta oferta vence en!
+                    </p>
+
+                    <div className="flex items-center justify-center gap-3">
+                      {/* Hours */}
+                      <div className="flex flex-col items-center">
+                        <div className="bg-white/30 backdrop-blur rounded-xl px-4 py-3 min-w-[64px] text-center drop-shadow-md">
+                          <span className="text-white text-3xl font-black tabular-nums drop-shadow-md">01</span>
+                        </div>
+                        <span className="text-white font-bold text-[10px] uppercase tracking-widest mt-1.5 drop-shadow-md">Horas</span>
+                      </div>
+
+                      <span className="text-white text-3xl font-black mb-4 drop-shadow-md">:</span>
+
+                      {/* Minutes */}
+                      <div className="flex flex-col items-center">
+                        <div className="bg-white/30 backdrop-blur rounded-xl px-4 py-3 min-w-[64px] text-center drop-shadow-md">
+                          <span className="text-white text-3xl font-black tabular-nums drop-shadow-md">07</span>
+                        </div>
+                        <span className="text-white font-bold text-[10px] uppercase tracking-widest mt-1.5 drop-shadow-md">Minutos</span>
+                      </div>
+
+                      <span className="text-white text-3xl font-black mb-4 drop-shadow-md">:</span>
+
+                      {/* Seconds */}
+                      <div className="flex flex-col items-center">
+                        <div className="bg-white/30 backdrop-blur rounded-xl px-4 py-3 min-w-[64px] text-center drop-shadow-md">
+                          <span className="text-white text-3xl font-black tabular-nums drop-shadow-md">18</span>
+                        </div>
+                        <span className="text-white font-bold text-[10px] uppercase tracking-widest mt-1.5 drop-shadow-md">Segundos</span>
+                      </div>
+                    </div>
+
+                    <p className="text-white text-xs text-center mt-4 font-semibold drop-shadow-md">
+                      🇦🇷 El precio vuelve a su valor original cuando termine el contador
+                    </p>
+                  </div>
+
+                  {/* Stock Alert Argentina Style */}
+                  <div className="mt-6 space-y-3">
+                    <div className="text-center flex items-center justify-center gap-2">
+                      <span className="text-blue-600 text-lg font-black animate-blink-pulse">●</span>
+                      <span className="text-gray-900 text-sm font-bold">Quedan pocas unidades - Pedi <span className="text-blue-600">Ahora</span></span>
+                    </div>
+                  </div>
+                </>
+              )}
 
               {/* Quantity */}
               <div className="flex items-center gap-4">
                 <span className="text-sm font-medium text-gray-700">Cantidad:</span>
-                <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden">
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors">−</button>
-                  <span className="w-12 h-10 flex items-center justify-center font-bold text-sm border-x border-gray-200">{quantity}</span>
-                  <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors">+</button>
+                <div className={`flex items-center rounded-xl overflow-hidden ${
+                  handle === 'kit-argentina-mundial-2026'
+                    ? 'border-2 border-sky-300'
+                    : 'border border-gray-200'
+                }`}>
+                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className={`w-10 h-10 flex items-center justify-center transition-colors ${
+                    handle === 'kit-argentina-mundial-2026'
+                      ? 'text-sky-400 hover:bg-sky-50'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}>−</button>
+                  <span className={`w-12 h-10 flex items-center justify-center font-bold text-sm ${
+                    handle === 'kit-argentina-mundial-2026'
+                      ? 'border-x-2 border-sky-300'
+                      : 'border-x border-gray-200'
+                  }`}>{quantity}</span>
+                  <button onClick={() => setQuantity(quantity + 1)} className={`w-10 h-10 flex items-center justify-center transition-colors ${
+                    handle === 'kit-argentina-mundial-2026'
+                      ? 'text-sky-400 hover:bg-sky-50'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}>+</button>
                 </div>
               </div>
 
               {/* Add to Cart */}
               <button onClick={() => addItem(product, quantity)}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-black py-6 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl flex items-center justify-center gap-4 text-lg md:text-xl mt-8 mb-4"
+                className={`w-full text-white font-black py-6 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl flex items-center justify-center gap-4 text-lg md:text-xl mt-8 mb-4 ${
+                  handle === 'kit-argentina-mundial-2026'
+                    ? 'bg-sky-400 hover:bg-sky-500'
+                    : 'bg-red-600 hover:bg-red-700'
+                }`}
                 id="add-to-cart-detail">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
@@ -264,55 +418,36 @@ export default function ProductoPage() {
               </button>
 
               {/* What's Included Section */}
-              <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 border border-gray-100">
+              <div className={`rounded-3xl p-8 border ${
+                handle === 'kit-argentina-mundial-2026'
+                  ? 'bg-gradient-to-br from-sky-50 to-sky-50/40 border-sky-200'
+                  : 'bg-gradient-to-br from-gray-50 to-white border-gray-100'
+              }`}>
                 <h3 className="text-2xl font-black text-gray-900 mb-8 text-center">Qué incluye tu compra</h3>
 
-                <div className="flex flex-row gap-4 md:gap-8 justify-center">
-                  {/* Botella Portátil */}
-                  <div className="flex flex-col items-center text-center flex-1">
-                    <div className="w-20 h-20 md:w-24 md:h-24 bg-blue-100 rounded-2xl flex items-center justify-center text-4xl md:text-5xl mb-3 md:mb-4 shadow-md">
-                      💧
+                <div className="flex flex-row gap-4 md:gap-8 justify-center items-stretch">
+                  {PRODUCT_CONFIGS[handle].descriptionItems.map((item: any) => (
+                    <div key={item.title} className="flex flex-col items-center text-center flex-1">
+                      <div className={`w-20 h-20 md:w-24 md:h-24 ${item.bgColor} rounded-2xl flex items-center justify-center text-4xl md:text-5xl mb-3 md:mb-4 shadow-md`}>
+                        {item.icon}
+                      </div>
+                      <h4 className="font-black text-gray-900 text-xs md:text-sm mb-1 md:mb-2">{item.title}</h4>
+                      <p className="text-[10px] md:text-xs text-gray-600 leading-relaxed">{item.description}</p>
                     </div>
-                    <h4 className="font-black text-gray-900 text-xs md:text-sm mb-1 md:mb-2">Botella Portátil Premium</h4>
-                    <p className="text-[10px] md:text-xs text-gray-600 leading-relaxed">Diseño antigoteo, ligera y práctica. Mantené a tu perro hidratado en cualquier momento.</p>
-                  </div>
-
-                  {/* Juntador */}
-                  <div className="flex flex-col items-center text-center flex-1">
-                    <div className="w-20 h-20 md:w-24 md:h-24 bg-amber-100 rounded-2xl flex items-center justify-center text-4xl md:text-5xl mb-3 md:mb-4 shadow-md">
-                      🧹
-                    </div>
-                    <h4 className="font-black text-gray-900 text-xs md:text-sm mb-1 md:mb-2">Juntador de Excremento</h4>
-                    <p className="text-[10px] md:text-xs text-gray-600 leading-relaxed">Práctico y funcional. Olvidate de los paseos incómodos, llevá las bolsas de forma fácil.</p>
-                  </div>
-
-                  {/* Chaleco */}
-                  <div className="flex flex-col items-center text-center flex-1">
-                    <div className="w-20 h-20 md:w-24 md:h-24 bg-red-100 rounded-2xl flex items-center justify-center text-4xl md:text-5xl mb-3 md:mb-4 shadow-md">
-                      🦺
-                    </div>
-                    <h4 className="font-black text-gray-900 text-xs md:text-sm mb-1 md:mb-2">Chaleco de Paseo</h4>
-                    <p className="text-[10px] md:text-xs text-gray-600 leading-relaxed">Regalo incluido. Refuerza la seguridad y visibilidad de tu perro en cada paseo.</p>
-                  </div>
+                  ))}
                 </div>
 
                 {/* Highlight */}
                 <div className="mt-8 pt-6 border-t border-gray-200">
                   <p className="text-center text-sm font-bold text-gray-900">
-                    ✨ <span className="text-red-600">3 productos en 1 kit</span> - Todo lo que necesitas para paseos perfectos
+                    ✨ <span className="text-red-600">{PRODUCT_CONFIGS[handle].descriptionItems.length} productos en 1 kit</span> - Todo lo que necesitas
                   </p>
                 </div>
               </div>
 
               {/* Features pills */}
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 pt-6">
-                {[
-                  { icon: '🎒', label: 'Portátil', text: 'Ligero y compacto' },
-                  { icon: '💧', label: 'Antigoteo', text: 'Sin derrames' },
-                  { icon: '⚡', label: 'Práctica', text: 'Fácil de usar' },
-                  { icon: '✈️', label: 'Viajes', text: 'Ideal en cualquier lugar' },
-                  { icon: '🛡️', label: 'Resistente', text: 'Material premium' },
-                ].map((item) => (
+                {PRODUCT_CONFIGS[handle].features.map((item: any) => (
                   <div key={item.label} className="flex flex-col items-center text-center bg-gradient-to-b from-green-50 to-green-50/40 border border-green-200 rounded-xl px-3 md:px-4 py-3 md:py-4 hover:shadow-md transition-shadow duration-300">
                     <span className="text-2xl md:text-3xl mb-2">{item.icon}</span>
                     <h4 className="font-black text-green-900 text-xs md:text-sm mb-1">{item.label}</h4>

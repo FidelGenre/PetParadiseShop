@@ -60,7 +60,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .animate-marquee {
-  animation: marquee 20s linear infinite;
+  animation: marquee 12s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .animate-marquee {
+    animation: marquee 8s linear infinite;
+  }
 }
 
 .animate-marquee:hover {
@@ -123,6 +129,10 @@ h1, h2, h3, h4, h5, h6 {
   filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.6)) drop-shadow(0 0 12px rgba(220, 38, 38, 0.3));
 }
 
+.argentina-countdown-timer {
+  background: linear-gradient(90deg, #60A5FA 0%, #FBBF24 50%, #60A5FA 100%);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -155,6 +165,18 @@ main {
 .wave-divider {
   position: relative;
   height: 80px;
+}
+
+/* ============================================================
+   Argentina Mundial 2026 Theme
+   ============================================================ */
+.argentina-theme {
+  --color-primary: #74B9FF;
+  --color-secondary: #ffffff;
+}
+
+.argentina-theme .bg-gradient-to-br {
+  background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
 }
 
 /* ============================================================
