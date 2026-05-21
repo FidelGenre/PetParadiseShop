@@ -94,7 +94,7 @@ export default function CartDrawer() {
             <div className="flex items-center gap-3">
               <h2 className="text-lg font-bold text-gray-900">Tu Carrito</h2>
               {totalQuantity > 0 && (
-                <span className="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                <span className="bg-slate-800 text-white text-xs font-bold px-2.5 py-1 rounded-full">
                   {totalQuantity}
                 </span>
               )}
@@ -124,7 +124,7 @@ export default function CartDrawer() {
                 </p>
                 <button
                   onClick={() => { closeCart(); router.push('/catalogo'); }}
-                  className="bg-red-600 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-red-700 transition-colors"
+                  className="bg-slate-800 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-slate-900 transition-colors"
                 >
                   Explorar productos
                 </button>
@@ -154,7 +154,7 @@ export default function CartDrawer() {
                       <h4 className="text-sm font-bold text-gray-900 truncate">
                         {item.title}
                       </h4>
-                      <p className="text-sm font-bold text-red-600 mt-1">
+                      <p className="text-sm font-bold text-slate-800 mt-1">
                         {formatPrice(item.price, item.currencyCode)}
                       </p>
 
@@ -163,7 +163,7 @@ export default function CartDrawer() {
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           disabled={isLoading}
-                          className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors shadow-sm disabled:opacity-50"
+                          className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-gray-600 hover:bg-slate-50 hover:text-slate-800 transition-colors shadow-sm disabled:opacity-50"
                         >
                           −
                         </button>
@@ -173,7 +173,7 @@ export default function CartDrawer() {
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
                           disabled={isLoading}
-                          className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors shadow-sm disabled:opacity-50"
+                          className="w-7 h-7 bg-white rounded-lg flex items-center justify-center text-gray-600 hover:bg-slate-50 hover:text-slate-800 transition-colors shadow-sm disabled:opacity-50"
                         >
                           +
                         </button>
@@ -184,7 +184,7 @@ export default function CartDrawer() {
                     <button
                       onClick={() => removeItem(item.id)}
                       disabled={isLoading}
-                      className="p-1 text-gray-400 hover:text-red-600 transition-colors self-start disabled:opacity-50"
+                      className="p-1 text-gray-400 hover:text-slate-800 transition-colors self-start disabled:opacity-50"
                       aria-label="Eliminar"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
@@ -210,7 +210,7 @@ export default function CartDrawer() {
               <button
                 onClick={checkout}
                 disabled={isLoading}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-[1.01] active:scale-95 shadow-lg hover:shadow-xl disabled:opacity-50 flex items-center justify-center gap-2"
+                className="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-[1.01] active:scale-95 shadow-lg hover:shadow-xl disabled:opacity-50 flex items-center justify-center gap-2"
                 id="checkout-button"
               >
                 {isLoading ? (

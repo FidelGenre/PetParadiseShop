@@ -65,7 +65,7 @@ export default function BotellaPortatil() {
         <p className="text-gray-900 font-black text-2xl md:text-3xl uppercase tracking-tight">IDEAL PARA</p>
         <div className="inline-flex items-center gap-4 mt-2">
           <span className="text-gray-300 text-3xl select-none" aria-hidden>///</span>
-          <h2 className="text-red-600 font-black text-4xl md:text-5xl uppercase tracking-tight">CADA AVENTURA</h2>
+          <h2 className="text-slate-800 font-black text-4xl md:text-5xl uppercase tracking-tight">CADA AVENTURA</h2>
           <span className="text-gray-300 text-3xl select-none" aria-hidden>\\\</span>
         </div>
         <p className="text-gray-500 mt-4 text-base md:text-lg">Tu compañero siempre hidratado, vos tranquilo.</p>

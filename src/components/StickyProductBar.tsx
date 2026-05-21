@@ -68,11 +68,11 @@ export default function StickyProductBar({ product }: StickyProductBarProps) {
                   {formatPrice(compareAt.amount, compareAt.currencyCode)}
                 </span>
               )}
-              <span className="font-black text-xl sm:text-2xl text-red-600">
+              <span className="font-black text-xl sm:text-2xl text-slate-800">
                 {formatPrice(price.amount, price.currencyCode)}
               </span>
               {hasDiscount && (
-                <span className="bg-red-600 text-white text-xs sm:text-sm font-black px-2.5 py-1 rounded-full">
+                <span className="bg-blue-600 text-white text-xs sm:text-sm font-black px-2.5 py-1 rounded-full">
                   {discountPercent}%
                 </span>
               )}
@@ -83,7 +83,7 @@ export default function StickyProductBar({ product }: StickyProductBarProps) {
         {/* Add to Cart Button */}
         <button
           onClick={() => addItem(product, quantity)}
-          className="shrink-0 w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 sm:py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base whitespace-nowrap shadow-lg"
+          className="shrink-0 w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 sm:py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base whitespace-nowrap shadow-lg"
         >
           Añadir
         </button>

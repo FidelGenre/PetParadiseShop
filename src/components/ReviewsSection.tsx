@@ -68,7 +68,7 @@ function ReviewCard({ review, className = '' }: { review: Review; className?: st
       <img
         src={review.avatar}
         alt={review.name}
-        className="w-16 h-16 rounded-full object-cover border-2 border-red-100 mb-4"
+        className="w-16 h-16 rounded-full object-cover border-2 border-slate-100 mb-4"
       />
 
       <p className="font-bold text-gray-900 text-sm">
@@ -77,7 +77,7 @@ function ReviewCard({ review, className = '' }: { review: Review; className?: st
 
       <p className="text-gray-600 text-sm leading-relaxed mt-3 italic">{review.text}</p>
 
-      <p className="text-red-600 text-xs font-semibold mt-4 flex items-center gap-1">
+      <p className="text-slate-800 text-xs font-semibold mt-4 flex items-center gap-1">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
           <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clipRule="evenodd" />
         </svg>
@@ -168,7 +168,7 @@ export default function ReviewsSection() {
 
             <button
               onClick={() => { prev(); resetInterval(); }}
-              className="absolute -left-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-red-50 hover:border-red-300 transition-all"
+              className="absolute -left-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
               aria-label="Anterior reseña"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 text-gray-600">
@@ -177,7 +177,7 @@ export default function ReviewsSection() {
             </button>
             <button
               onClick={() => { next(); resetInterval(); }}
-              className="absolute -right-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-red-50 hover:border-red-300 transition-all"
+              className="absolute -right-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
               aria-label="Siguiente reseña"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 text-gray-600">
@@ -192,7 +192,7 @@ export default function ReviewsSection() {
                 key={i}
                 onClick={() => { setCurrent(i); resetInterval(); }}
                 className={`rounded-full transition-all duration-300 ${
-                  i === current ? 'bg-red-600 w-5 h-2.5' : 'bg-gray-300 w-2.5 h-2.5 hover:bg-gray-400'
+                  i === current ? 'bg-slate-800 w-5 h-2.5' : 'bg-gray-300 w-2.5 h-2.5 hover:bg-gray-400'
                 }`}
                 aria-label={`Reseña ${i + 1}`}
               />

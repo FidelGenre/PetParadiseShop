@@ -48,19 +48,19 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-8" id="main-nav">
             <Link
               href="/"
-              className="text-sm font-medium text-gray-700 hover:text-red-600 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-red-600 after:transition-all hover:after:w-full"
+              className="text-sm font-medium text-gray-700 hover:text-slate-800 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-slate-800 after:transition-all hover:after:w-full"
             >
               Inicio
             </Link>
             <Link
               href="/catalogo"
-              className="text-sm font-medium text-gray-700 hover:text-red-600 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-red-600 after:transition-all hover:after:w-full"
+              className="text-sm font-medium text-gray-700 hover:text-slate-800 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-slate-800 after:transition-all hover:after:w-full"
             >
               Catálogo
             </Link>
             <Link
               href="/contacto"
-              className="text-sm font-medium text-gray-700 hover:text-red-600 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-red-600 after:transition-all hover:after:w-full"
+              className="text-sm font-medium text-gray-700 hover:text-slate-800 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-slate-800 after:transition-all hover:after:w-full"
             >
               Contacto
             </Link>
@@ -71,7 +71,7 @@ export default function Header() {
             {/* Cart Button */}
             <button
               onClick={toggleCart}
-              className="relative p-2 text-gray-700 hover:text-red-600 transition-colors"
+              className="relative p-2 text-gray-700 hover:text-slate-800 transition-colors"
               aria-label="Carrito de compras"
               id="cart-button"
             >
@@ -90,7 +90,7 @@ export default function Header() {
                 />
               </svg>
               {totalQuantity > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center animate-bounce-in">
+                <span className="absolute -top-1 -right-1 bg-slate-800 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center animate-bounce-in">
                   {totalQuantity}
                 </span>
               )}
@@ -136,21 +136,21 @@ export default function Header() {
               <Link
                 href="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="px-4 py-3 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
+                className="px-4 py-3 text-sm font-medium text-gray-700 hover:bg-slate-50 hover:text-slate-800 rounded-lg transition-colors"
               >
                 Inicio
               </Link>
               <Link
                 href="/catalogo"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="px-4 py-3 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
+                className="px-4 py-3 text-sm font-medium text-gray-700 hover:bg-slate-50 hover:text-slate-800 rounded-lg transition-colors"
               >
                 Catálogo
               </Link>
               <Link
                 href="/contacto"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="px-4 py-3 text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg transition-colors"
+                className="px-4 py-3 text-sm font-medium text-gray-700 hover:bg-slate-50 hover:text-slate-800 rounded-lg transition-colors"
               >
                 Contacto
               </Link>

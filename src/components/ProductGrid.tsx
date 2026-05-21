@@ -54,8 +54,8 @@ const sideBadges = [
     icon: '🔥',
     title: 'Más vendido',
     desc: 'El favorito de nuestros clientes',
-    gradient: 'from-red-50 to-red-100/40',
-    border: 'border-red-100',
+    gradient: 'from-slate-50 to-slate-100/40',
+    border: 'border-slate-100',
   },
   {
     icon: '🚚',
@@ -83,7 +83,7 @@ const sideBadges = [
 function FeaturedSingleProduct({ product }: { product: Product }) {
   return (
     <div className="relative max-w-6xl mx-auto">
-      <div className="absolute inset-0 bg-gradient-to-br from-red-50/40 via-transparent to-amber-50/40 rounded-3xl -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50/40 via-transparent to-amber-50/40 rounded-3xl -z-10" />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center px-4 py-8 lg:py-12">
         {/* Left badges */}

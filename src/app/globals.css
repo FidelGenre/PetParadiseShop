@@ -4,8 +4,10 @@
    CSS Variables & Base
    ============================================================ */
 :root {
-  --color-primary: #dc2626;
-  --color-primary-dark: #b91c1c;
+  --color-primary: #1e293b;
+  --color-primary-dark: #0f172a;
+  --color-accent: #2563eb;
+  --color-accent-dark: #1d4ed8;
   --font-body: 'Inter', sans-serif;
   --font-heading: 'Poppins', sans-serif;
 }
@@ -126,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-blink-pulse {
   animation: blink-pulse 1.2s ease-in-out infinite;
-  filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.6)) drop-shadow(0 0 12px rgba(220, 38, 38, 0.3));
+  filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.6)) drop-shadow(0 0 12px rgba(37, 99, 235, 0.3));
 }
 
 .argentina-countdown-timer {
@@ -159,7 +161,7 @@ main {
               linear-gradient(315deg, white 25%, transparent 25%),
               linear-gradient(45deg, white 25%, transparent 25%);
   background-size: 20px 20px;
-  background-color: #dc2626;
+  background-color: #1e293b;
 }
 
 .wave-divider {
@@ -183,11 +185,12 @@ main {
    Brand Consistency Notes
    ============================================================ */
 /*
-   Primary Red: bg-red-600 / hover:bg-red-700 / text-red-600
+   Primary Slate: bg-slate-800 / hover:bg-slate-900 / text-slate-800
+   Accent Blue: bg-blue-600 / hover:bg-blue-700 / text-blue-600
    Rounded: rounded-2xl (buttons) / rounded-3xl (cards)
    Shadows: shadow-lg (primary) / shadow-md (secondary)
    Text: font-black (headings) / font-bold (body)
-   Badges: bg-red-600 text-white text-xs font-black px-3 py-1 rounded-full
+   Badges: bg-slate-800 text-white text-xs font-black px-3 py-1 rounded-full
    Cards: bg-white rounded-3xl p-6 md:p-8 shadow-lg
 */
 
@@ -198,6 +201,6 @@ main {
   right: 0;
   top: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><defs><linearGradient id="grad"><stop offset="0%25" style="stop-color:white;stop-opacity:1" /><stop offset="100%25" style="stop-color:%23dc2626;stop-opacity:1" /></linearGradient></defs><path d="M0,40 Q300,80 600,40 T1200,40 L1200,120 L0,120 Z" fill="white"/></svg>') no-repeat center bottom;
+  background: url('data:image/svg+xml,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><defs><linearGradient id="grad"><stop offset="0%25" style="stop-color:white;stop-opacity:1" /><stop offset="100%25" style="stop-color:%231e293b;stop-opacity:1" /></linearGradient></defs><path d="M0,40 Q300,80 600,40 T1200,40 L1200,120 L0,120 Z" fill="white"/></svg>') no-repeat center bottom;
   background-size: cover;
 }

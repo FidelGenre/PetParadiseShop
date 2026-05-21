@@ -118,7 +118,7 @@ export default function ProductReviews({ reviews }: { reviews: Review[] }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-black text-gray-900 inline-flex items-center gap-2">
-            Nuestros clientes <span className="text-red-600">❤</span>
+            Nuestros clientes <span className="text-slate-800">❤</span>
           </h2>
         </div>
 

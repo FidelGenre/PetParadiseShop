@@ -53,7 +53,7 @@ export default function PainPointSection({
 
   return (
     <section className={`relative py-20 md:py-28 transition-colors duration-500 ${
-      isArgentina ? 'bg-sky-400' : 'bg-red-600'
+      isArgentina ? 'bg-sky-400' : 'bg-slate-800'
     }`}>
       {/* Top wave */}
       <svg
@@ -167,7 +167,7 @@ export default function PainPointSection({
                 className={`inline-block font-black py-4 px-8 md:px-12 rounded-2xl text-lg md:text-xl transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-xl ${
                   isArgentina
                     ? 'bg-white text-sky-400 hover:bg-sky-50'
-                    : 'bg-white text-red-600 hover:bg-gray-100'
+                    : 'bg-white text-slate-800 hover:bg-gray-100'
                 }`}>
                 {isArgentina ? 'Vestí a tu mascota con la de la Selección' : 'Obtén tu Kit Premium Ahora'}
               </a>
@@ -179,7 +179,7 @@ export default function PainPointSection({
                 className={`bg-white font-black py-4 px-8 md:px-12 rounded-2xl text-lg md:text-xl transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-xl ${
                   isArgentina
                     ? 'text-sky-400 hover:bg-sky-50'
-                    : 'text-red-600 hover:bg-gray-100'
+                    : 'text-slate-800 hover:bg-gray-100'
                 }`}>
                 {isArgentina ? 'Vestí a tu mascota con la de la Selección' : 'Obtén tu Kit Premium Ahora'}
               </button>

@@ -47,29 +47,36 @@ export default function HomePage() {
         isArgentinaSlide ? 'bg-sky-50' : 'bg-gray-50'
       }`} id="benefits">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-12">
+            <h2 className={`text-3xl md:text-4xl lg:text-5xl font-black transition-colors duration-500 ${
+              isArgentinaSlide ? 'text-sky-500' : 'text-slate-800'
+            }`}>
+              ¿Por qué elegir <span className="text-gray-900">Pet Paradise</span>?
+            </h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Free Shipping */}
             <div className="text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 ${
-                isArgentinaSlide ? 'bg-sky-50' : 'bg-red-50'
+                isArgentinaSlide ? 'bg-sky-50' : 'bg-slate-50'
               }`}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-7 h-7 ${
-                  isArgentinaSlide ? 'text-sky-400' : 'text-red-600'
+                  isArgentinaSlide ? 'text-sky-400' : 'text-slate-800'
                 }`}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                 </svg>
               </div>
               <h3 className="font-bold text-gray-900 mb-2">Envíos Gratis</h3>
-              <p className="text-sm text-gray-500">En todos tus pedidos a todo el país</p>
+              <p className="text-sm text-gray-500">En pedidos seleccionados a todo el país</p>
             </div>
 
             {/* Installments */}
             <div className="text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 ${
-                isArgentinaSlide ? 'bg-sky-50' : 'bg-red-50'
+                isArgentinaSlide ? 'bg-sky-50' : 'bg-slate-50'
               }`}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-7 h-7 ${
-                  isArgentinaSlide ? 'text-sky-400' : 'text-red-600'
+                  isArgentinaSlide ? 'text-sky-400' : 'text-slate-800'
                 }`}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
                 </svg>
@@ -81,10 +88,10 @@ export default function HomePage() {
             {/* Support */}
             <div className="text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 ${
-                isArgentinaSlide ? 'bg-sky-50' : 'bg-red-50'
+                isArgentinaSlide ? 'bg-sky-50' : 'bg-slate-50'
               }`}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-7 h-7 ${
-                  isArgentinaSlide ? 'text-sky-400' : 'text-red-600'
+                  isArgentinaSlide ? 'text-sky-400' : 'text-slate-800'
                 }`}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
                 </svg>

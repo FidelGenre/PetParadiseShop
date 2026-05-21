@@ -81,7 +81,7 @@ export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
         {/* CTA Button — mobile only, posicionado sobre el botón pintado en la imagen */}
         <Link
           href="/producto/kit-premium-de-paseo-para-perros"
-          className="absolute bottom-[11%] left-[5%] z-30 sm:hidden inline-flex items-center gap-3 bg-red-600 text-white pl-7 pr-6 py-4 rounded-full font-black text-base uppercase tracking-wide shadow-lg active:scale-95 transition-transform"
+          className="absolute bottom-[11%] left-[5%] z-30 sm:hidden inline-flex items-center gap-3 bg-blue-600 text-white pl-7 pr-6 py-4 rounded-full font-black text-base uppercase tracking-wide shadow-lg active:scale-95 transition-transform"
           id="hero-cta-slide1-mobile"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -95,7 +95,7 @@ export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
         {/* CTA Button — desktop only, izquierda del texto "compra segura" */}
         <Link
           href="/producto/kit-premium-de-paseo-para-perros"
-          className="absolute bottom-[6%] left-[9%] z-20 hidden sm:inline-flex items-center gap-3 bg-red-600 text-white pl-7 pr-6 py-4 rounded-full font-black text-base md:text-lg uppercase tracking-wide hover:bg-red-700 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-xl"
+          className="absolute bottom-[6%] left-[9%] z-20 hidden sm:inline-flex items-center gap-3 bg-blue-600 text-white pl-7 pr-6 py-4 rounded-full font-black text-base md:text-lg uppercase tracking-wide hover:bg-slate-900 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-xl"
           id="hero-cta-slide1"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">

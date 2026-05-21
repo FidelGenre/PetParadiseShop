@@ -68,7 +68,7 @@ const PRODUCT_CONFIGS: Record<string, any> = {
         icon: '🦺',
         title: 'Chaleco de Paseo',
         description: 'Regalo incluido. Refuerza la seguridad y visibilidad de tu perro en cada paseo.',
-        bgColor: 'bg-red-100',
+        bgColor: 'bg-slate-100',
       },
     ],
     features: [
@@ -154,7 +154,7 @@ export default function ProductoPage() {
         <span className="text-6xl block mb-4">😿</span>
         <h1 className="text-2xl font-bold mb-2">Producto no encontrado</h1>
         <p className="text-gray-500 mb-6">No pudimos encontrar el producto que buscás.</p>
-        <Link href="/catalogo" className="bg-red-600 text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-red-700 transition-colors">
+        <Link href="/catalogo" className="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-slate-900 transition-colors">
           Volver al catálogo
         </Link>
       </div>
@@ -174,9 +174,9 @@ export default function ProductoPage() {
     <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 ${handle === 'kit-argentina-mundial-2026' ? 'argentina-theme' : ''}`}>
       {/* Breadcrumb */}
       <nav className="mb-8 text-sm text-gray-400">
-        <Link href="/" className="hover:text-red-600 transition-colors">Inicio</Link>
+        <Link href="/" className="hover:text-slate-800 transition-colors">Inicio</Link>
         <span className="mx-2">/</span>
-        <Link href="/catalogo" className="hover:text-red-600 transition-colors">Catálogo</Link>
+        <Link href="/catalogo" className="hover:text-slate-800 transition-colors">Catálogo</Link>
         <span className="mx-2">/</span>
         <span className="text-gray-700">{product.title}</span>
       </nav>
@@ -195,14 +195,14 @@ export default function ProductoPage() {
           >
             {hasDiscount && (
               <div className={`absolute top-4 left-4 z-10 text-white text-sm font-bold px-3 py-1.5 rounded-full ${
-                handle === 'kit-argentina-mundial-2026' ? 'bg-sky-400' : 'bg-red-600'
+                handle === 'kit-argentina-mundial-2026' ? 'bg-sky-400' : 'bg-slate-800'
               }`}>
                 OFERTA
               </div>
             )}
             {/* Free shipping badge */}
             <div className={`absolute top-4 right-4 z-10 text-white text-sm font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 ${
-              handle === 'kit-argentina-mundial-2026' ? 'bg-sky-400' : 'bg-red-600'
+              handle === 'kit-argentina-mundial-2026' ? 'bg-sky-400' : 'bg-slate-800'
             }`}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
@@ -223,7 +223,7 @@ export default function ProductoPage() {
             <div className="flex gap-3 overflow-x-auto pb-2">
               {images.map((img, i) => (
                 <button key={i} onClick={() => setSelectedImage(i)}
-                  className={`w-20 h-20 rounded-lg overflow-hidden border-2 shrink-0 transition-all ${i === selectedImage ? 'border-red-600 shadow-md' : 'border-gray-200 hover:border-gray-400'}`}>
+                  className={`w-20 h-20 rounded-lg overflow-hidden border-2 shrink-0 transition-all ${i === selectedImage ? 'border-slate-800 shadow-md' : 'border-gray-200 hover:border-gray-400'}`}>
                   <Image src={img.url} alt={img.altText || ''} width={80} height={80} className="object-cover w-full h-full" />
                 </button>
               ))}
@@ -254,7 +254,7 @@ export default function ProductoPage() {
         {/* Product Info */}
         <div className="space-y-6">
           <div>
-            <p className="text-sm text-red-600 font-medium mb-1">{product.productType || 'Pet Paradise'}</p>
+            <p className="text-sm text-slate-800 font-medium mb-1">{product.productType || 'Pet Paradise'}</p>
             <h1 className="text-2xl md:text-3xl font-black text-gray-900">{product.title}</h1>
             {handle === 'kit-premium-de-paseo-para-perros' && (
               <div className="mt-3 inline-flex items-center gap-2 bg-green-50 border border-green-100 px-3 py-1.5 rounded-full">
@@ -285,14 +285,14 @@ export default function ProductoPage() {
               {hasDiscount && (
                 <span className="text-xl text-gray-400 line-through">{formatPrice(compareAt.amount, compareAt.currencyCode)}</span>
               )}
-              <span className={`text-3xl font-black ${hasDiscount ? 'text-red-600' : 'text-gray-900'}`}>
+              <span className={`text-3xl font-black ${hasDiscount ? 'text-slate-800' : 'text-gray-900'}`}>
                 {formatPrice(price.amount, price.currencyCode)}
               </span>
               {hasDiscount && (
                 <span className={`text-white text-sm font-black px-3 py-1 rounded-full ${
                   handle === 'kit-argentina-mundial-2026'
                     ? 'bg-sky-400'
-                    : 'bg-red-600'
+                    : 'bg-slate-800'
                 }`}>
                   -{Math.round((1 - parseFloat(price.amount) / parseFloat(compareAt.amount)) * 100)}% OFF
                 </span>
@@ -308,7 +308,7 @@ export default function ProductoPage() {
               {handle === 'kit-premium-de-paseo-para-perros' && (
                 <>
                   {/* Gift highlight */}
-                  <div className="relative bg-gradient-to-r from-red-600 to-red-500 text-white rounded-2xl p-4 shadow-lg overflow-hidden">
+                  <div className="relative bg-gradient-to-r from-slate-800 to-slate-700 text-white rounded-2xl p-4 shadow-lg overflow-hidden">
                     <div className="absolute -right-4 -top-4 text-7xl opacity-10 rotate-12 select-none">🎁</div>
                     <div className="relative flex items-start gap-3">
                       <span className="text-3xl shrink-0">🎁</span>
@@ -379,7 +379,7 @@ export default function ProductoPage() {
                 className={`w-full text-white font-black py-6 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl flex items-center justify-center gap-4 text-lg md:text-xl mt-8 mb-4 ${
                   handle === 'kit-argentina-mundial-2026'
                     ? 'bg-sky-400 hover:bg-sky-500'
-                    : 'bg-red-600 hover:bg-red-700'
+                    : 'bg-blue-600 hover:bg-blue-700'
                 }`}
                 id="add-to-cart-detail">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -411,7 +411,7 @@ export default function ProductoPage() {
                 {/* Highlight */}
                 <div className="mt-8 pt-6 border-t border-gray-200">
                   <p className="text-center text-sm font-bold text-gray-900">
-                    ✨ <span className="text-red-600">{PRODUCT_CONFIGS[handle].descriptionItems.length} productos en 1 kit</span> - Todo lo que necesitas
+                    ✨ <span className="text-slate-800">{PRODUCT_CONFIGS[handle].descriptionItems.length} productos en 1 kit</span> - Todo lo que necesitas
                   </p>
                 </div>
               </div>
@@ -438,7 +438,7 @@ export default function ProductoPage() {
     {handle === 'kit-premium-de-paseo-para-perros' && (
       <>
         <PainPointSection
-          title="¿Tu perro merece agua limpia en cada paseo?"
+          title="Tu perro merece agua limpia en cada paseo"
           subtitle="Descubrí por qué miles de dueños ya no salen sin la botella portátil."
           cardTitle="Los paseos sin agua pueden ser peligrosos."
           bullets={[

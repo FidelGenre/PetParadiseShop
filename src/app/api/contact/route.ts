@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       subject: `📬 Nuevo mensaje de ${nombre} - Pet Paradise`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: #dc2626; padding: 24px; border-radius: 12px 12px 0 0;">
+          <div style="background: #1e293b; padding: 24px; border-radius: 12px 12px 0 0;">
             <h1 style="color: white; margin: 0; font-size: 22px;">🐾 Nuevo contacto - Pet Paradise</h1>
           </div>
           <div style="background: #f9f9f9; padding: 24px; border-radius: 0 0 12px 12px; border: 1px solid #e5e7eb;">

@@ -60,7 +60,7 @@ export default function CountdownTimer() {
 
   return (
     <div>
-      <div className="bg-red-600 rounded-2xl px-6 py-5 mt-2" id="countdown-timer">
+      <div className="bg-slate-800 rounded-2xl px-6 py-5 mt-2" id="countdown-timer">
         <p className="text-white text-xs font-bold text-center uppercase tracking-widest mb-4 flex items-center justify-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 animate-bounce">
             <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clipRule="evenodd" />
@@ -106,8 +106,8 @@ export default function CountdownTimer() {
       <div className="mt-6 space-y-3">
         {/* Stock Alert */}
         <div className="text-center flex items-center justify-center gap-2">
-          <span className="text-red-600 text-lg font-black animate-blink-pulse">●</span>
-          <span className="text-gray-900 text-sm font-bold">Quedan pocas unidades - Pedi <span className="text-red-600">Ahora</span></span>
+          <span className="text-slate-800 text-lg font-black animate-blink-pulse">●</span>
+          <span className="text-gray-900 text-sm font-bold">Quedan pocas unidades - Pedi <span className="text-slate-800">Ahora</span></span>
         </div>
 
         {/* Shipping & Promo Info */}

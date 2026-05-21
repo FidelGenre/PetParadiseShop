@@ -114,9 +114,9 @@ export default function FloatingNotification() {
           transition: 'opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
         }}
       >
-        <div className="relative bg-white rounded-xl md:rounded-2xl p-2.5 md:p-4 shadow-2xl border-2 border-red-100 max-w-[240px] md:max-w-xs overflow-hidden">
+        <div className="relative bg-white rounded-xl md:rounded-2xl p-2.5 md:p-4 shadow-2xl border-2 border-slate-100 max-w-[240px] md:max-w-xs overflow-hidden">
           {/* Gradient accent bar */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-red-600 to-red-500"></div>
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-slate-700 via-slate-800 to-slate-700"></div>
 
           {/* Live indicator */}
           <div className="absolute top-2 right-2 flex items-center gap-1">
@@ -128,7 +128,7 @@ export default function FloatingNotification() {
           </div>
 
           <div className="flex items-start gap-2 md:gap-3 mt-1">
-            <div className="shrink-0 w-9 h-9 md:w-12 md:h-12 relative bg-gradient-to-br from-red-50 to-red-100 rounded-full p-1.5 ring-2 ring-red-200">
+            <div className="shrink-0 w-9 h-9 md:w-12 md:h-12 relative bg-gradient-to-br from-slate-50 to-slate-100 rounded-full p-1.5 ring-2 ring-slate-200">
               <div className="relative w-full h-full">
                 <Image
                   src="/logo.png"
@@ -143,7 +143,7 @@ export default function FloatingNotification() {
             </div>
             <div className="flex-1 min-w-0 pr-4">
               <p className="font-black text-gray-900 text-xs md:text-sm leading-tight">
-                ✅ <span className="text-red-600">{notification.name}</span> acaba de comprar
+                ✅ <span className="text-slate-800">{notification.name}</span> acaba de comprar
               </p>
               <p className="text-[11px] md:text-xs text-gray-700 font-semibold mt-1 line-clamp-2">
                 {notification.product}
