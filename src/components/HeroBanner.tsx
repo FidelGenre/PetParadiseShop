@@ -14,11 +14,6 @@ export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
   const total = 2;
 
   useEffect(() => {
-    // Resetear al slide 0 cuando el componente se monta
-    setCurrent(0);
-  }, []);
-
-  useEffect(() => {
     onSlideChange?.(current);
   }, [current, onSlideChange]);
 
@@ -65,18 +60,22 @@ export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
             src="/banner1responsive.png"
             alt="Kit Premium de Paseo para Perros"
             fill
-            priority
+            preload
+            fetchPriority="high"
+            quality={75}
             className="object-cover object-top sm:hidden"
-            sizes="100vw"
+            sizes="(max-width: 640px) 100vw, 0px"
           />
           {/* Desktop */}
           <Image
             src="/bannernasi.png"
             alt="Kit Premium de Paseo para Perros"
             fill
-            priority
+            preload
+            fetchPriority="high"
+            quality={75}
             className="object-cover object-bottom hidden sm:block"
-            sizes="100vw"
+            sizes="(min-width: 641px) 100vw, 0px"
           />
         </div>
         {/* CTA Button — mobile only, posicionado sobre el botón pintado en la imagen */}
@@ -118,16 +117,20 @@ export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
           src="/banner2responsive.png"
           alt="Kit Argentina Mundial 2026"
           fill
+          loading="lazy"
+          quality={65}
           className="object-cover object-center sm:hidden"
-          sizes="100vw"
+          sizes="(max-width: 640px) 100vw, 0px"
         />
         {/* Desktop */}
         <Image
           src="/bannerlocura.png"
           alt="Kit Argentina Mundial 2026"
           fill
+          loading="lazy"
+          quality={65}
           className="object-cover object-center hidden sm:block"
-          sizes="100vw"
+          sizes="(min-width: 641px) 100vw, 0px"
         />
         {/* CTA Button — celeste y blanco */}
         <Link

@@ -28,7 +28,8 @@ export default function PainPointSection({
   argentinaCtaHref,
   isArgentina = false,
 }: PainPointSectionProps) {
-  const finalCtaHref = isArgentina && argentinaCtaHref ? argentinaCtaHref : ctaHref;
+  const baseCtaHref = isArgentina && argentinaCtaHref ? argentinaCtaHref : ctaHref;
+  const finalCtaHref = baseCtaHref ? `${baseCtaHref}?addToCart=1` : baseCtaHref;
   const defaultTitle = <>¿Tu mascota merece <span className="underline decoration-white/40 decoration-4 underline-offset-4">más comodidad</span> en cada paseo?</>;
   const defaultSubtitle = 'Descubrí por qué miles de dueños eligen nuestro kit premium para sus mejores amigos.';
   const defaultCardTitle = 'Los paseos no deberían ser un dolor de cabeza.';
@@ -116,6 +117,9 @@ export default function PainPointSection({
                   alt="Familia Mundial 2026"
                   width={600}
                   height={600}
+                  loading="lazy"
+                  quality={65}
+                  sizes="(max-width: 768px) 100vw, 600px"
                   className="w-full h-auto object-cover"
                 />
               </div>

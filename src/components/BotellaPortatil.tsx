@@ -80,8 +80,10 @@ export default function BotellaPortatil() {
                 src={a.src}
                 alt={a.label}
                 fill
+                loading="lazy"
+                quality={65}
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
-                sizes="(max-width: 640px) 33vw, 33vw"
+                sizes="(max-width: 640px) 33vw, (max-width: 1024px) 33vw, 400px"
               />
             </div>
             <div className="bg-teal-500 text-white text-center py-1.5 md:py-3 font-black uppercase tracking-wider md:tracking-widest text-[10px] md:text-sm">

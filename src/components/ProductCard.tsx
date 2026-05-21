@@ -43,7 +43,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       )}
     <div
-      className={`group rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 flex flex-col ${
+      className={`group rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 flex flex-col h-full ${
         isArgentina
           ? 'bg-gradient-to-br from-sky-50 to-white border-sky-200'
           : 'bg-white border-gray-100'
@@ -100,34 +100,36 @@ export default function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       {/* Content */}
-      <div className="p-4 flex flex-col flex-grow">
-        <Link href={`/producto/${product.handle}`}>
-          <h3 className="font-bold text-gray-900 text-sm mb-2 line-clamp-2 group-hover:text-red-600 transition-colors">
-            {product.title}
-          </h3>
-        </Link>
+      <div className="p-4 flex flex-col flex-grow justify-between">
+        <div>
+          <Link href={`/producto/${product.handle}`}>
+            <h3 className="font-bold text-gray-900 text-sm mb-3 line-clamp-2 group-hover:text-red-600 transition-colors">
+              {product.title}
+            </h3>
+          </Link>
 
-        {/* Price */}
-        <div className="mb-4 mt-auto">
-          <div className="flex items-center gap-2">
-            {hasDiscount && (
-              <span className="text-sm text-gray-400 line-through">
-                {formatPrice(compareAtPrice.amount, compareAtPrice.currencyCode)}
+          {/* Price */}
+          <div>
+            <div className="flex items-center gap-2">
+              {hasDiscount && (
+                <span className="text-sm text-gray-400 line-through">
+                  {formatPrice(compareAtPrice.amount, compareAtPrice.currencyCode)}
+                </span>
+              )}
+              <span className={`text-lg font-bold ${hasDiscount ? 'text-red-600' : 'text-gray-900'}`}>
+                {formatPrice(price.amount, price.currencyCode)}
               </span>
-            )}
-            <span className={`text-lg font-bold ${hasDiscount ? 'text-red-600' : 'text-gray-900'}`}>
-              {formatPrice(price.amount, price.currencyCode)}
-            </span>
+            </div>
+            <p className="text-xs text-green-600 font-medium mt-0.5">
+              3 cuotas sin interés x {formatPrice((parseFloat(price.amount) / 3).toFixed(2), price.currencyCode)}
+            </p>
           </div>
-          <p className="text-xs text-green-600 font-medium mt-0.5">
-            3 cuotas sin interés x {formatPrice((parseFloat(price.amount) / 3).toFixed(2), price.currencyCode)}
-          </p>
         </div>
 
         {/* Add to Cart Button */}
         <button
           onClick={() => addItem(product)}
-          className={`w-full text-white text-sm font-bold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center gap-2 ${
+          className={`w-full text-white text-sm font-bold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-lg flex items-center justify-center gap-2 mt-4 ${
             isArgentina
               ? 'bg-sky-400 hover:bg-sky-500'
               : 'bg-red-600 hover:bg-red-700'

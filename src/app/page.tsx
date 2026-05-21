@@ -1,17 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import HomeHero from '@/components/HomeHero';
+import BotellaPortatil from '@/components/BotellaPortatil';
 import PainPointSection from '@/components/PainPointSection';
 import ReviewsSection from '@/components/ReviewsSection';
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const isArgentinaSlide = currentSlide === 1;
-
-  useEffect(() => {
-    setCurrentSlide(0);
-  }, []);
 
   return (
     <>
@@ -24,6 +21,8 @@ export default function HomePage() {
       />
 
       <ReviewsSection />
+
+      {!isArgentinaSlide && <BotellaPortatil />}
 
       {/* CTA to catalog */}
       <div className="text-center mt-10 px-4">

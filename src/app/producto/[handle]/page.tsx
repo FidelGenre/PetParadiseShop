@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useState, useEffect, useRef } from 'react';
+import { useParams, useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getProductByHandle, formatPrice } from '@/lib/shopify';
@@ -105,12 +105,16 @@ const PRODUCT_CONFIGS: Record<string, any> = {
 
 export default function ProductoPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const handle = params.handle as string;
+  const shouldAddToCart = searchParams.get('addToCart') === '1';
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
+  const autoAddedRef = useRef(false);
 
   useEffect(() => {
     if (handle) {
@@ -120,6 +124,13 @@ export default function ProductoPage() {
       });
     }
   }, [handle]);
+
+  useEffect(() => {
+    if (!shouldAddToCart || !product || autoAddedRef.current) return;
+    autoAddedRef.current = true;
+    addItem(product, 1);
+    router.replace(`/producto/${handle}`, { scroll: false });
+  }, [shouldAddToCart, product, addItem, router, handle]);
 
   if (loading) {
     return (

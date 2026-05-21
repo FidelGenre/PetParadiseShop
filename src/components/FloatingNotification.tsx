@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { getProducts } from '@/lib/shopify';
+import { getProducts, demoProducts, demoToProduct } from '@/lib/shopify';
 
 interface Notification {
   id: number;
@@ -38,10 +38,15 @@ export default function FloatingNotification() {
   const [productTitles, setProductTitles] = useState<string[]>([]);
 
   useEffect(() => {
-    getProducts(20).then((products) => {
-      const titles = products.map((p) => p.title);
-      setProductTitles(titles);
-    });
+    getProducts(20)
+      .then((products) => {
+        const titles = products.map((p) => p.title);
+        setProductTitles(titles.length > 0 ? titles : demoProducts.map((p) => p.title));
+      })
+      .catch((error) => {
+        console.error('FloatingNotification: Error loading products:', error);
+        setProductTitles(demoProducts.map((p) => p.title));
+      });
   }, []);
 
   useEffect(() => {
@@ -129,6 +134,9 @@ export default function FloatingNotification() {
                   src="/logo.png"
                   alt="Pet Paradise"
                   fill
+                  loading="lazy"
+                  quality={65}
+                  sizes="48px"
                   className="object-contain"
                 />
               </div>

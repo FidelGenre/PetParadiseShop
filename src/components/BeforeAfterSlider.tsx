@@ -34,9 +34,10 @@ export default function BeforeAfterSlider({
         src={beforeSrc}
         alt={beforeLabel}
         fill
+        loading="lazy"
+        quality={65}
         className="object-cover"
         sizes="(max-width: 768px) 100vw, 50vw"
-        priority
       />
 
       {/* After image clipped from the right */}
@@ -48,9 +49,10 @@ export default function BeforeAfterSlider({
           src={afterSrc}
           alt={afterLabel}
           fill
+          loading="lazy"
+          quality={65}
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 50vw"
-          priority
         />
       </div>
 
