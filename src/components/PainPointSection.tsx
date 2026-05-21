@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import BeforeAfterSlider from './BeforeAfterSlider';
 
 interface PainPointSectionProps {
@@ -106,15 +107,27 @@ export default function PainPointSection({
             </ul>
           </div>
 
-          {/* Right: before/after slider */}
+          {/* Right: before/after slider or single image */}
           <div className="order-1 md:order-2">
-            <BeforeAfterSlider
-              beforeSrc={beforeSrc}
-              afterSrc={afterSrc}
-              beforeLabel="Antes"
-              afterLabel="Después"
-              intervalMs={6000}
-            />
+            {isArgentina ? (
+              <div className="rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/familiamundial.png"
+                  alt="Familia Mundial 2026"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            ) : (
+              <BeforeAfterSlider
+                beforeSrc={beforeSrc}
+                afterSrc={afterSrc}
+                beforeLabel="Antes"
+                afterLabel="Después"
+                intervalMs={6000}
+              />
+            )}
           </div>
         </div>
 

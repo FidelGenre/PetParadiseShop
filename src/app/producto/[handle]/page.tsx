@@ -198,7 +198,9 @@ export default function ProductoPage() {
               </svg>
               GRATIS
             </div>
-            {isDemo ? (
+            {handle === 'kit-argentina-mundial-2026' ? (
+              <Image src="/productomundial.png" alt={product.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" priority />
+            ) : isDemo ? (
               <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
                 <span className="text-8xl">{product.productType === 'Gatos' ? '🐱' : '🐕'}</span>
               </div>
@@ -318,7 +320,7 @@ export default function ProductoPage() {
                       <span className="text-3xl shrink-0">🎁</span>
                       <div>
                         <p className="font-black uppercase text-xs tracking-widest text-white/80">Hoy te llevás de regalo</p>
-                        <p className="font-bold text-sm mt-0.5">Bandana Argentina + Envío gratis</p>
+                        <p className="font-bold text-sm mt-0.5">Bandanas Argentina + Pelotita saltarina con luces + Envío gratis</p>
                       </div>
                     </div>
                   </div>

@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import CartDrawer from "@/components/CartDrawer";
 import Footer from "@/components/Footer";
 import TabTitleManager from "@/components/TabTitleManager";
+import FloatingNotification from "@/components/FloatingNotification";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,6 +56,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <CartDrawer />
+          <FloatingNotification />
         </CartProvider>
       </body>
     </html>

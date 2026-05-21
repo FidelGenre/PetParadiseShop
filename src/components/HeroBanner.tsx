@@ -46,7 +46,11 @@ export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
 
   return (
     <section
-      className="relative overflow-hidden w-full aspect-[1274/1235] sm:aspect-[1740/904] sm:max-h-[70vh] xl:max-h-[700px]"
+      className={`relative overflow-hidden w-full sm:max-h-[70vh] xl:max-h-[700px] ${
+        current === 0
+          ? 'aspect-[1274/1235] sm:aspect-[1740/904]'
+          : 'aspect-[1274/1235] sm:aspect-[1740/1200]'
+      }`}
       id="hero-banner"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -105,54 +109,55 @@ export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
         </Link>
       </div>
 
-      {/* ── Slide 2: fondopagina1.png con textos ── */}
+      {/* ── Slide 2: bannerlocura.png con botón y features ── */}
       <div
         className={`absolute inset-0 transition-opacity duration-500 ${current === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}
       >
+        {/* Mobile */}
         <Image
-          src="/fondopagina1.png"
-          alt="Pet Paradise Shop - Todo lo que tu mascota necesita"
+          src="/banner2responsive.png"
+          alt="Kit Argentina Mundial 2026"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center sm:hidden"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" />
-        <div className="absolute inset-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 lg:py-24 flex items-center">
-          <div className="text-white space-y-6">
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none drop-shadow-lg">
-                Pet Paradise
-              </h1>
-              <p className="text-2xl md:text-3xl font-bold text-red-200 mt-1 uppercase drop-shadow-md">
-                Shop
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h2 className="text-lg md:text-xl font-bold italic drop-shadow-md">
-                TODO LO QUE TU MASCOTA NECESITA
-              </h2>
-              <p className="text-sm md:text-base text-white/90 italic max-w-md leading-relaxed drop-shadow-sm">
-                Encontrá productos de calidad y ofertas increíbles para hacer
-                la vida de tu mejor amigo mas feliz!
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/catalogo"
-                className="inline-flex items-center justify-center gap-2 bg-white text-red-600 px-8 py-3 rounded-full font-bold text-sm hover:bg-red-50 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                id="hero-cta-button"
-              >
-                Ver Tienda →
-              </Link>
-            </div>
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-5 py-2.5 text-sm text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
-              </svg>
-              <span className="font-medium">342-477-0030</span>
-            </div>
-          </div>
-        </div>
+        {/* Desktop */}
+        <Image
+          src="/bannerlocura.png"
+          alt="Kit Argentina Mundial 2026"
+          fill
+          className="object-cover object-center hidden sm:block"
+          sizes="100vw"
+        />
+        {/* CTA Button — celeste y blanco */}
+        <Link
+          href="/producto/kit-argentina-mundial-2026"
+          className="absolute bottom-[11%] left-[5%] z-30 sm:hidden inline-flex items-center gap-3 bg-sky-400 text-white pl-7 pr-6 py-4 rounded-full font-black text-base uppercase tracking-wide shadow-lg active:scale-95 transition-transform"
+          id="hero-cta-slide2-mobile"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+          </svg>
+          Comprar Ahora
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </Link>
+        {/* CTA Button — desktop, celeste y blanco */}
+        <Link
+          href="/producto/kit-argentina-mundial-2026"
+          className="absolute bottom-[6%] left-[9%] z-20 hidden sm:inline-flex items-center gap-3 bg-sky-400 text-white pl-7 pr-6 py-4 rounded-full font-black text-base md:text-lg uppercase tracking-wide hover:bg-sky-500 hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-xl"
+          id="hero-cta-slide2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+          </svg>
+          Comprar Ahora
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </Link>
+
       </div>
 
       {/* Arrow Controls */}
