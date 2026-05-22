@@ -4,13 +4,13 @@ export default function AnnouncementBar() {
   const messages = [
     'ENVÍOS GRATIS A TODO EL PAÍS',
     '3 CUOTAS SIN INTERÉS',
-    '🔥 DESCUENTOS SOLO POR HOY 🔥',
+    '🔥 DESCUENTOS POR TIEMPO LIMITADO 🔥',
     'ENVÍOS GRATIS A TODO EL PAÍS',
     '3 CUOTAS SIN INTERÉS',
-    '🔥 DESCUENTOS SOLO POR HOY 🔥',
+    '🔥 DESCUENTOS POR TIEMPO LIMITADO 🔥',
     'ENVÍOS GRATIS A TODO EL PAÍS',
     '3 CUOTAS SIN INTERÉS',
-    '🔥 DESCUENTOS SOLO POR HOY 🔥',
+    '🔥 DESCUENTOS POR TIEMPO LIMITADO 🔥',
   ];
 
   return (

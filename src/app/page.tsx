@@ -42,19 +42,86 @@ export default function HomePage() {
         </a>
       </div>
 
-      {/* Benefits Section */}
+      {/* Why Us Section - Premium Benefits */}
+      <section className={`py-16 md:py-24 transition-colors duration-500 ${
+        isArgentinaSlide ? 'bg-gradient-to-b from-white to-sky-50' : 'bg-gradient-to-b from-white to-slate-50'
+      }`} id="why-us">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 md:mb-20">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight">
+              <span className="text-slate-900">¿Por qué elegir </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600">Pet Paradise</span>
+              <span className="text-slate-900">?</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Premium Quality */}
+            <div className="group text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-gray-100">
+              <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-500 ${
+                isArgentinaSlide ? 'bg-sky-100 group-hover:bg-sky-200' : 'bg-slate-100 group-hover:bg-slate-200'
+              }`}>
+                <div className="text-5xl">🐾</div>
+              </div>
+              <h3 className="font-black text-gray-900 mb-3 text-lg">Productos seleccionados con calidad premium</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">Porque tu mascota merece lo mejor en comodidad, diversión y cuidado.</p>
+            </div>
+
+            {/* Customer Satisfaction */}
+            <div className="group text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-gray-100">
+              <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-500 ${
+                isArgentinaSlide ? 'bg-sky-100 group-hover:bg-sky-200' : 'bg-slate-100 group-hover:bg-slate-200'
+              }`}>
+                <div className="text-5xl">❤️</div>
+              </div>
+              <h3 className="font-black text-gray-900 mb-3 text-lg">Miles de clientes satisfechos</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">Elegidos por familias que buscan productos útiles, originales y confiables.</p>
+            </div>
+
+            {/* Secure Payments */}
+            <div className="group text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-gray-100">
+              <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-500 ${
+                isArgentinaSlide ? 'bg-sky-100 group-hover:bg-sky-200' : 'bg-slate-100 group-hover:bg-slate-200'
+              }`}>
+                <div className="text-5xl">🔒</div>
+              </div>
+              <h3 className="font-black text-gray-900 mb-3 text-lg">Pagos 100% seguros</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">Comprá con tranquilidad gracias a métodos de pago protegidos y confiables.</p>
+            </div>
+
+            {/* Pet Lovers Experience */}
+            <div className="group text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-gray-100">
+              <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-500 ${
+                isArgentinaSlide ? 'bg-sky-100 group-hover:bg-sky-200' : 'bg-slate-100 group-hover:bg-slate-200'
+              }`}>
+                <div className="text-5xl">✨</div>
+              </div>
+              <h3 className="font-black text-gray-900 mb-3 text-lg">Experiencia pensada para amantes de las mascotas</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">Cada detalle de Pet Paradise está creado para hacer feliz a tu compañero peludo.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section - Additional Services */}
       <section className={`py-12 md:py-16 transition-colors duration-500 ${
         isArgentinaSlide ? 'bg-sky-50' : 'bg-gray-50'
       }`} id="benefits">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Divider line */}
+          <div className={`border-t transition-colors duration-500 mb-10 md:mb-14 ${
+            isArgentinaSlide ? 'border-sky-100' : 'border-gray-200'
+          }`}></div>
+
           <div className="text-center mb-10 md:mb-12">
-            <h2 className={`text-3xl md:text-4xl lg:text-5xl font-black transition-colors duration-500 ${
-              isArgentinaSlide ? 'text-sky-500' : 'text-slate-800'
+            <h3 className={`text-2xl md:text-3xl font-black transition-colors duration-500 ${
+              isArgentinaSlide ? 'text-sky-600' : 'text-slate-800'
             }`}>
-              ¿Por qué elegir <span className="text-gray-900">Pet Paradise</span>?
-            </h2>
+              Ventajas exclusivas para vos
+            </h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Free Shipping */}
             <div className="text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 ${

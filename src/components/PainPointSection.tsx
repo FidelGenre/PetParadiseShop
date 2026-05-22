@@ -34,8 +34,9 @@ export default function PainPointSection({
   const defaultSubtitle = 'Descubrí por qué miles de dueños eligen nuestro kit premium para sus mejores amigos.';
   const defaultCardTitle = 'Los paseos no deberían ser un dolor de cabeza.';
 
-  const argentinaTitle = <>Dale a tu perro el <span className="underline decoration-white/40 decoration-4 underline-offset-4">estilo del Mundial</span> 2026</>;
-  const argentinaSubtitle = 'Viste a tu mascota con los colores de Argentina y celebrá juntos la pasión por el fútbol.';
+  const argentinaTitle = <>Tu perro también merece vivir el <span className="underline decoration-white/40 decoration-4 underline-offset-4">Mundial</span></>;
+
+  const argentinaSubtitle = 'Vestí a tu mascota con los colores de Argentina y celebrá juntos la pasión por el fútbol, porque en casa celebramos todos.';
   const argentinaCardTitle = 'Tu perro merece representar a Argentina.';
   const defaultBullets = [
     'Tu perro toma agua de charcos o fuentes sucias en el paseo.',
@@ -169,7 +170,7 @@ export default function PainPointSection({
                     ? 'bg-white text-sky-400 hover:bg-sky-50'
                     : 'bg-white text-slate-800 hover:bg-gray-100'
                 }`}>
-                {isArgentina ? 'Vestí a tu mascota con la de la Selección' : 'Obtén tu Kit Premium Ahora'}
+                {isArgentina ? 'Alentar en familia' : 'Obtén tu Kit Premium Ahora'}
               </a>
             ) : (
               <button
@@ -181,7 +182,7 @@ export default function PainPointSection({
                     ? 'text-sky-400 hover:bg-sky-50'
                     : 'text-slate-800 hover:bg-gray-100'
                 }`}>
-                {isArgentina ? 'Vestí a tu mascota con la de la Selección' : 'Obtén tu Kit Premium Ahora'}
+                {isArgentina ? 'Alentar en familia' : 'Obtén tu Kit Premium Ahora'}
               </button>
             )}
           </div>

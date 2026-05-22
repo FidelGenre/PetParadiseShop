@@ -29,8 +29,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group" id="header-logo">
-            <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform group-hover:scale-110">
+          <Link href="/" className="flex items-center group -my-4" id="header-logo">
+            <div className="relative w-20 h-20 md:w-28 md:h-28 transition-transform group-hover:scale-110">
               <Image
                 src="/logo.png"
                 alt="Pet Paradise Shop"
@@ -39,9 +39,6 @@ export default function Header() {
                 priority
               />
             </div>
-            <span className="text-lg md:text-xl font-bold text-gray-900">
-              Pet Paradise
-            </span>
           </Link>
 
           {/* Navigation - Desktop */}

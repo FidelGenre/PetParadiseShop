@@ -93,6 +93,12 @@ const PRODUCT_CONFIGS: Record<string, any> = {
         description: 'Bandana con diseños característicos de Argentina, perfecta para llevar tu pasión.',
         bgColor: 'bg-yellow-100',
       },
+      {
+        icon: '🌟',
+        title: 'Pelota Saltarina con Luces',
+        description: 'Regalo incluido. Juguete interactivo con luces que brilla mientras tu mascota juega.',
+        bgColor: 'bg-pink-100',
+      },
     ],
     features: [
       { icon: '⚽', label: 'Calidad', text: 'Material premium' },
