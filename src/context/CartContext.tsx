@@ -91,6 +91,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
+      // Track AddToCart event with Meta Pixel
+      if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'AddToCart', {
+          content_name: product.title,
+          content_ids: [variant.id],
+          content_type: 'product',
+          value: parseFloat(variant.price.amount) * quantity,
+          currency: variant.price.currencyCode,
+          quantity: quantity,
+        });
+      }
+
       if (isShopifyConfigured()) {
         try {
           if (!cartId) {
@@ -247,11 +259,23 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const checkout = useCallback(() => {
     if (checkoutUrl) {
+      // Track Purchase event with Meta Pixel
+      if (typeof window !== 'undefined' && window.fbq && items.length > 0) {
+        const total = items.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
+        window.fbq('track', 'Purchase', {
+          content_name: items.map((i) => i.title).join(', '),
+          content_ids: items.map((i) => i.variantId),
+          content_type: 'product_group',
+          value: total,
+          currency: items[0]?.currencyCode || 'ARS',
+          num_items: items.reduce((sum, i) => sum + i.quantity, 0),
+        });
+      }
       window.open(checkoutUrl, '_blank');
     } else if (!isShopifyConfigured()) {
       alert('Conectá tu tienda Shopify para habilitar el checkout. Configurá las variables de entorno en .env.local');
     }
-  }, [checkoutUrl]);
+  }, [checkoutUrl, items]);
 
   // Sync cart on mount if we have a cartId
   useEffect(() => {

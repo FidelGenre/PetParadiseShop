@@ -127,6 +127,18 @@ export default function ProductoPage() {
       getProductByHandle(handle).then((p) => {
         setProduct(p);
         setLoading(false);
+
+        // Track ViewContent event with Meta Pixel
+        if (typeof window !== 'undefined' && window.fbq && p) {
+          const price = p.priceRange.minVariantPrice;
+          window.fbq('track', 'ViewContent', {
+            content_name: p.title,
+            content_ids: [p.id],
+            content_type: 'product',
+            value: parseFloat(price.amount),
+            currency: price.currencyCode,
+          });
+        }
       });
     }
   }, [handle]);

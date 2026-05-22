@@ -8,6 +8,7 @@ import CartDrawer from "@/components/CartDrawer";
 import Footer from "@/components/Footer";
 import TabTitleManager from "@/components/TabTitleManager";
 import FloatingNotification from "@/components/FloatingNotification";
+import MetaPixel from "@/components/MetaPixel";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,6 +49,7 @@ export default function RootLayout({
     <html lang="es" className={`${inter.variable} ${poppins.variable}`}>
       <body className="bg-white text-gray-900 antialiased font-[family-name:var(--font-inter)]">
         <CartProvider>
+          <MetaPixel />
           <TabTitleManager />
           <AnnouncementBar />
           <Header />
