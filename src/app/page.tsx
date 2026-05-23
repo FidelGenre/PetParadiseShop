@@ -20,7 +20,7 @@ export default function HomePage() {
         isArgentina={isArgentinaSlide}
       />
 
-      <ReviewsSection />
+      <ReviewsSection isArgentina={isArgentinaSlide} />
 
       {!isArgentinaSlide && <BotellaPortatil />}
 

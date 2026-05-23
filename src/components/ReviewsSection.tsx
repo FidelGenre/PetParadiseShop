@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-const reviews = [
+const reviewsDefault = [
   {
     name: 'Lucía F.',
     location: 'Rosario',
@@ -47,9 +47,52 @@ const reviews = [
   },
 ];
 
-const PAGES = [reviews.slice(0, 3), reviews.slice(3, 6)];
+const reviewsArgentina = [
+  {
+    name: 'Florencia M.',
+    location: 'Buenos Aires',
+    avatar: '/fotomujer2.jpg',
+    stars: 5,
+    text: '"¡Quedó increíble mi caniche con la pechera! 🇦🇷 Para el último amistoso lo vestimos a juego con toda la familia y nos sacamos mil fotos. La tela es re suave y abriga bien 💙"',
+  },
+  {
+    name: 'Joaquín R.',
+    location: 'Córdoba',
+    avatar: '/fotohombre3.jpg',
+    stars: 5,
+    text: '"La compré pensando que iba a ser una más, pero la calidad me sorprendió. Mi golden la usa sin problema, no le molesta nada. Encima la bandana de regalo quedó hermosa ⚽"',
+  },
+  {
+    name: 'Camila S.',
+    location: 'Rosario',
+    avatar: '/fotomujer3.jpg',
+    stars: 5,
+    text: '"Soy fan del mundial y ahora mi pug también jaja. La pechera le entra perfecto, no le aprieta. Para los partidos importantes ya tenemos uniforme de la familia completo 🐶🇦🇷"',
+  },
+  {
+    name: 'Nicolás T.',
+    location: 'Mendoza',
+    avatar: '/fotohombre1.jpg',
+    stars: 5,
+    text: '"Re buena compra. Mi mujer la pidió para nuestro labrador y quedó re contenta. La pelotita de regalo le encantó al perro, juega todo el día con eso. Llegó rápido y bien embalado"',
+  },
+  {
+    name: 'Agustina P.',
+    location: 'La Plata',
+    avatar: '/fotomujer1.jpg',
+    stars: 5,
+    text: '"Hermosa la pechera!! Mi chihuahua parece de selección 😍 La tela es polar, abriga mucho, ideal para el invierno. Y los regalitos que vienen son un golazo. Súper recomendado 💙🤍"',
+  },
+  {
+    name: 'Federico L.',
+    location: 'Santa Fe',
+    avatar: '/fotohombre2.jpg',
+    stars: 5,
+    text: '"Le compré el kit a mi border collie y la verdad que está re cómodo. Lo uso para las juntadas con amigos a ver los partidos y siempre se lleva todas las miradas 🏆 Vale cada peso"',
+  },
+];
 
-type Review = (typeof reviews)[number];
+type Review = (typeof reviewsDefault)[number];
 
 function ReviewCard({ review, className = '' }: { review: Review; className?: string }) {
   return (
@@ -87,7 +130,13 @@ function ReviewCard({ review, className = '' }: { review: Review; className?: st
   );
 }
 
-export default function ReviewsSection() {
+interface ReviewsSectionProps {
+  isArgentina?: boolean;
+}
+
+export default function ReviewsSection({ isArgentina = false }: ReviewsSectionProps = {}) {
+  const reviews = isArgentina ? reviewsArgentina : reviewsDefault;
+  const PAGES = [reviews.slice(0, 3), reviews.slice(3, 6)];
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -135,7 +184,11 @@ export default function ReviewsSection() {
           <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">
             Lo que dicen nuestros clientes
           </h2>
-          <p className="text-gray-500 text-sm">Opiniones verificadas sobre la Botella Portátil para Perros</p>
+          <p className="text-gray-500 text-sm">
+            {isArgentina
+              ? 'Opiniones verificadas sobre el Kit Argentina Mundial 2026'
+              : 'Opiniones verificadas sobre la Botella Portátil para Perros'}
+          </p>
         </div>
 
         {/* MOBILE: scroll horizontal con snap */}
