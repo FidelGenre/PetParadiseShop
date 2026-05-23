@@ -469,6 +469,18 @@ export default function ProductoPage() {
                   </div>
                 ))}
               </div>
+
+              {/* Shopify description */}
+              {(product.descriptionHtml || product.description) && (
+                <div className={`rounded-3xl p-8 border mt-6 ${
+                  handle === 'kit-argentina-mundial-2026'
+                    ? 'bg-gradient-to-br from-sky-50 to-sky-50/40 border-sky-200'
+                    : 'bg-gradient-to-br from-gray-50 to-white border-gray-100'
+                }`}>
+                  <h3 className="text-2xl font-black text-gray-900 mb-6 text-center">Descripción</h3>
+                  <div className="prose prose-sm text-gray-600 max-w-none" dangerouslySetInnerHTML={{ __html: product.descriptionHtml || `<p>${product.description}</p>` }} />
+                </div>
+              )}
             </div>
           ) : (
             <div className="prose prose-sm text-gray-600 max-w-none" dangerouslySetInnerHTML={{ __html: product.descriptionHtml || `<p>${product.description}</p>` }} />
