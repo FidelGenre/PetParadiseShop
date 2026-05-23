@@ -18,7 +18,7 @@ export default function Footer() {
             {/* Social Buttons */}
             <div className="flex flex-col gap-3 pt-4">
               <a
-                href="https://www.instagram.com/petparadisesf/"
+                href="https://www.instagram.com/petparadise_Arg"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] hover:opacity-90 text-white text-sm font-bold px-5 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-md w-fit"
