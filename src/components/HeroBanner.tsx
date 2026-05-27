@@ -86,7 +86,7 @@ export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
         {/* CTA Button — mobile only, posicionado sobre el botón pintado en la imagen */}
         <button
           onClick={() => handleBuyNow('kit-premium-de-paseo-para-perros')}
-          className="btn-shimmer absolute bottom-[11%] left-[5%] z-30 sm:hidden inline-flex items-center gap-3 bg-blue-600 text-white pl-7 pr-6 py-4 rounded-full font-black text-base uppercase tracking-wide shadow-lg active:scale-95 transition-transform hover:bg-blue-700"
+          className="btn-shimmer absolute bottom-[11%] right-[5%] z-30 sm:hidden inline-flex items-center gap-3 bg-blue-600 text-white pl-7 pr-6 py-4 rounded-full font-black text-base uppercase tracking-wide shadow-lg active:scale-95 transition-transform hover:bg-blue-700"
           id="hero-cta-slide1-mobile"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
@@ -140,7 +140,7 @@ export default function HeroBanner({ onSlideChange }: HeroBannerProps = {}) {
         {/* CTA Button — celeste y blanco */}
         <button
           onClick={() => handleBuyNow('kit-argentina-mundial-2026')}
-          className="btn-shimmer absolute bottom-[11%] left-[5%] z-30 sm:hidden inline-flex items-center gap-3 bg-sky-400 text-white pl-7 pr-6 py-4 rounded-full font-black text-base uppercase tracking-wide shadow-lg active:scale-95 transition-transform hover:bg-sky-500"
+          className="btn-shimmer absolute bottom-[11%] right-[5%] z-30 sm:hidden inline-flex items-center gap-3 bg-sky-400 text-white pl-7 pr-6 py-4 rounded-full font-black text-base uppercase tracking-wide shadow-lg active:scale-95 transition-transform hover:bg-sky-500"
           id="hero-cta-slide2-mobile"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
