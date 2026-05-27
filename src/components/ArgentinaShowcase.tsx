@@ -24,9 +24,9 @@ const features = [
 ];
 
 const categories = [
-  { src: '/perropaseo.png', label: 'PASEOS' },
-  { src: '/perroviaje.png', label: 'VIAJES' },
-  { src: '/perroaventura.png', label: 'AVENTURAS' },
+  { src: '/perropartido.png', label: 'PARTIDOS' },
+  { src: '/perrojuntada.png', label: 'JUNTADAS' },
+  { src: '/perrofamilia.png', label: 'EN FAMILIA' },
 ];
 
 export default function ArgentinaShowcase() {
@@ -48,10 +48,10 @@ export default function ArgentinaShowcase() {
         <p className="text-gray-900 font-black text-2xl md:text-3xl uppercase tracking-tight">IDEAL PARA</p>
         <div className="inline-flex items-center gap-4 mt-2">
           <span className="text-gray-300 text-3xl select-none" aria-hidden>///</span>
-          <h2 className="text-sky-400 font-black text-4xl md:text-5xl uppercase tracking-tight">CADA AVENTURA</h2>
+          <h2 className="text-sky-400 font-black text-4xl md:text-5xl uppercase tracking-tight">CADA MOMENTO MUNDIAL</h2>
           <span className="text-gray-300 text-3xl select-none" aria-hidden>\\\</span>
         </div>
-        <p className="text-gray-500 mt-4 text-base md:text-lg">Tu compañero siempre representando Argentina, vos tranquilo.</p>
+        <p className="text-gray-500 mt-4 text-base md:text-lg">Tu mascota celebrando Argentina en cada partido, junto a vos.</p>
       </div>
 
       {/* Adventures Grid */}

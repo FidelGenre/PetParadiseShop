@@ -5,10 +5,11 @@ import HomeHero from '@/components/HomeHero';
 import BotellaPortatil from '@/components/BotellaPortatil';
 import PainPointSection from '@/components/PainPointSection';
 import ReviewsSection from '@/components/ReviewsSection';
+import ArgentinaShowcase from '@/components/ArgentinaShowcase';
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const isArgentinaSlide = currentSlide === 1;
+  const isArgentinaSlide = currentSlide === 0;
 
   return (
     <>
@@ -22,6 +23,7 @@ export default function HomePage() {
 
       <ReviewsSection isArgentina={isArgentinaSlide} />
 
+      {isArgentinaSlide && <ArgentinaShowcase />}
       {!isArgentinaSlide && <BotellaPortatil />}
 
       {/* CTA to catalog */}

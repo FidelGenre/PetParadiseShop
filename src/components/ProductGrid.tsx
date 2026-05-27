@@ -40,7 +40,11 @@ export default function ProductGrid({ products, title, subtitle, featured = fals
         <FeaturedSingleProduct product={products[0]} />
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
-          {products.map((product) => (
+          {[...products].sort((a, b) => {
+            if (a.handle === 'kit-argentina-mundial-2026') return -1;
+            if (b.handle === 'kit-argentina-mundial-2026') return 1;
+            return 0;
+          }).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
